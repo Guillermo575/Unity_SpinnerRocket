@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
 
     #region Variables
-    [HideInInspector] public AudioSource objAudio;
+    [HideInInspector] public static AudioSource objAudio;
     [HideInInspector] public List<GameObject> lstStar;
     [HideInInspector] public List<GameObject> lstAsteroid;
     [HideInInspector] public bool GameOver = false;
@@ -26,7 +27,11 @@ public class GameManager : MonoBehaviour
     public GameObject MenuGameOver;
     public GameObject HUD;
     public GameObject MenuPause;
+
+    [Header("HUD")]
     public TextMeshProUGUI txtScore;
+    public Image btnSoundON;
+    public Image btnSoundOFF;
 
     [Header("Scene Bounds")]
     public Vector3 minValues;
@@ -69,6 +74,8 @@ public class GameManager : MonoBehaviour
             PauseScreen();
         }
         txtScore.text = "Score: " + Score;
+        btnSoundON.enabled = objAudio.isPlaying;
+        btnSoundOFF.enabled = !objAudio.isPlaying;
     }
     void FollowCamera()
     {
@@ -78,6 +85,20 @@ public class GameManager : MonoBehaviour
         Vector3 boundPosition = new Vector3(Mathf.Clamp(targetPosition.x, minValues.x + (width / 2), maxValues.x - (width / 2)), Mathf.Clamp(targetPosition.y, minValues.y + (height / 2), maxValues.y - (height / 2)), -10);
         Vector3 smoothPosition = Vector3.Lerp(Camera.transform.position, boundPosition, smoothFactor * Time.fixedDeltaTime);
         Camera.transform.position = (smoothFactor == 0) ? boundPosition : smoothPosition;
+    }
+    public void PauseMusic()
+    {
+        if(objAudio.isPlaying)
+        {
+            objAudio.Pause();
+        }
+        else
+        {
+            if(objAudio.time != 0)
+            {
+                objAudio.UnPause();
+            }
+        }
     }
     #endregion
 
@@ -139,6 +160,16 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 0;
                 objAudio.Pause();
             }
+        }
+    }
+    #endregion
+
+    #region Menu Mouse Clicks
+    public void MouseClick(string buttonType)
+    {
+        if (buttonType == "Sound")
+        {
+            PauseMusic();
         }
     }
     #endregion

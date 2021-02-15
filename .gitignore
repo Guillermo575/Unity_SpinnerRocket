@@ -71,4 +71,5 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 Project/SpinnerRocket/Library/
+Project/SpinnerRocket/Temp/
 *.cache

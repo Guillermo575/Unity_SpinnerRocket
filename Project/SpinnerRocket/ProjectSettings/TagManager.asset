@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Star
   - Obstaculo
+  - GameManager
   layers:
   - Default
   - TransparentFX
