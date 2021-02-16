@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     #region Variables
     [HideInInspector] public static AudioSource objAudio;
+    [HideInInspector] public static bool MuteGame;
     [HideInInspector] public List<GameObject> lstStar;
     [HideInInspector] public List<GameObject> lstAsteroid;
     [HideInInspector] public bool GameOver = false;
@@ -74,8 +75,8 @@ public class GameManager : MonoBehaviour
             PauseScreen();
         }
         txtScore.text = "Score: " + Score;
-        btnSoundON.enabled = objAudio.isPlaying;
-        btnSoundOFF.enabled = !objAudio.isPlaying;
+        btnSoundON.enabled = !MuteGame;
+        btnSoundOFF.enabled = MuteGame;
     }
     void FollowCamera()
     {
@@ -86,17 +87,23 @@ public class GameManager : MonoBehaviour
         Vector3 smoothPosition = Vector3.Lerp(Camera.transform.position, boundPosition, smoothFactor * Time.fixedDeltaTime);
         Camera.transform.position = (smoothFactor == 0) ? boundPosition : smoothPosition;
     }
-    public void PauseMusic()
+    public void ToogleMute()
     {
         if(objAudio.isPlaying)
         {
             objAudio.Pause();
+            MuteGame = true;
         }
         else
         {
-            if(objAudio.time != 0)
+            MuteGame = false;
+            if (objAudio.time != 0)
             {
                 objAudio.UnPause();
+            }
+            else
+            {
+                objAudio.Play();
             }
         }
     }
@@ -112,7 +119,10 @@ public class GameManager : MonoBehaviour
         {
             StartGame = true;
             GameOver = false;
-            objAudio.Play();
+            if(!MuteGame)
+            {
+                objAudio.Play();
+            }
             for (int i = 0; i < 3; i++)
             {
                 lstStar.Add(Instantiate(objStar, new Vector2(UnityEngine.Random.Range(minValues.x, maxValues.x), UnityEngine.Random.Range(minValues.y, maxValues.y)), Quaternion.identity));
@@ -152,7 +162,10 @@ public class GameManager : MonoBehaviour
             {
                 PauseGame = false;
                 Time.timeScale = 1;
-                objAudio.UnPause();
+                if(!MuteGame)
+                {
+                    objAudio.UnPause();
+                }
             }
             else
             {
@@ -160,16 +173,6 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 0;
                 objAudio.Pause();
             }
-        }
-    }
-    #endregion
-
-    #region Menu Mouse Clicks
-    public void MouseClick(string buttonType)
-    {
-        if (buttonType == "Sound")
-        {
-            PauseMusic();
         }
     }
     #endregion
