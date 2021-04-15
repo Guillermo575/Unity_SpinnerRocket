@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
 
-    #region Variables
+    #region Hidden Variables
     [HideInInspector] public static AudioSource objAudio;
     [HideInInspector] public static bool MuteGame;
     [HideInInspector] public List<GameObject> lstStar;
@@ -17,7 +17,10 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool StartGame = false;
     [HideInInspector] public bool PauseGame = false;
     [HideInInspector] public int Score = 0;
+    [HideInInspector] public bool SkipStart = true;
+    #endregion
 
+    #region Editor Variables 
     [Header("Objects")]
     public GameObject objStar;
     public GameObject objAsteroid;
@@ -115,7 +118,7 @@ public class GameManager : MonoBehaviour
         MenuStart.SetActive(true);
         MenuPause.SetActive(false);
         HUD.SetActive(false);
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.X) || SkipStart)
         {
             StartGame = true;
             GameOver = false;
