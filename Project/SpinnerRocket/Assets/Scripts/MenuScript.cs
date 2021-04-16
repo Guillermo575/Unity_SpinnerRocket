@@ -49,15 +49,18 @@ public class MenuScript : MonoBehaviour
         if (MenuSound.activeSelf)
         {
             Slider SliderVolume = GameObject.Find("SliderMusic").GetComponent<Slider>();
+            SliderVolume.value = PlayerPrefs.GetFloat("masterVolume");
             TextMeshProUGUI LabelMusicLevel = GameObject.Find("LabelMusicLevel").GetComponent<TextMeshProUGUI>();
             LabelMusicLevel.text = SliderVolume.value.ToString("0.0");
             Slider SliderSound = GameObject.Find("SliderSound").GetComponent<Slider>();
+            SliderSound.value = PlayerPrefs.GetFloat("masterSound");
             TextMeshProUGUI LabelSoundLevel = GameObject.Find("LabelSoundLevel").GetComponent<TextMeshProUGUI>();
             LabelSoundLevel.text = SliderSound.value.ToString("0.0");
         }
         if (MenuGraphics.activeSelf)
         { 
             Slider SliderBrightness = GameObject.Find("SliderBrightness").GetComponent<Slider>();
+            SliderBrightness.value = PlayerPrefs.GetFloat("masterBrightness");
             TextMeshProUGUI LabelBrightnessLevel = GameObject.Find("LabelBrightnessLevel").GetComponent<TextMeshProUGUI>();
             LabelBrightnessLevel.text = SliderBrightness.value.ToString("0.0");
         }

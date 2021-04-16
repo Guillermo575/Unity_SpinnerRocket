@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
 {
 
     #region Hidden Variables
-    [HideInInspector] public static AudioSource objAudio;
     [HideInInspector] public static bool MuteGame;
     [HideInInspector] public List<GameObject> lstStar;
     [HideInInspector] public List<GameObject> lstAsteroid;
@@ -18,6 +17,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool PauseGame = false;
     [HideInInspector] public int Score = 0;
     [HideInInspector] public bool SkipStart = true;
+    [HideInInspector] public AudioClip ClipBGM;
     #endregion
 
     #region Editor Variables 
@@ -25,6 +25,10 @@ public class GameManager : MonoBehaviour
     public GameObject objStar;
     public GameObject objAsteroid;
     public GameObject objPlayer;
+
+    [Header("Audio")]
+    public AudioSource objAudioMusic;
+    public AudioSource objAudioSound;
 
     [Header("Menu")]
     public GameObject MenuStart;
@@ -56,7 +60,11 @@ public class GameManager : MonoBehaviour
         StartGame = false;
         objAsteroid.GetComponent<Obstacle>().GameManager = this;
         Score = 0;
-        objAudio = this.GetComponent<AudioSource>();
+        ClipBGM = Resources.Load<AudioClip>("Audio/magical_light_parade");
+        objAudioMusic.clip = ClipBGM;
+        objAudioMusic.volume = PlayerPrefs.GetFloat("masterVolume", 1);
+        objAudioSound.volume = PlayerPrefs.GetFloat("masterSound", 1);
+        HUD.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.5f * (1 - PlayerPrefs.GetFloat("masterBrightness", 1)));
     }
     void Update()
     {
@@ -92,21 +100,21 @@ public class GameManager : MonoBehaviour
     }
     public void ToogleMute()
     {
-        if(objAudio.isPlaying)
+        if(objAudioMusic.isPlaying)
         {
-            objAudio.Pause();
+            objAudioMusic.Pause();
             MuteGame = true;
         }
         else
         {
             MuteGame = false;
-            if (objAudio.time != 0)
+            if (objAudioMusic.time != 0)
             {
-                objAudio.UnPause();
+                objAudioMusic.UnPause();
             }
             else
             {
-                objAudio.Play();
+                objAudioMusic.Play();
             }
         }
     }
@@ -124,7 +132,7 @@ public class GameManager : MonoBehaviour
             GameOver = false;
             if(!MuteGame)
             {
-                objAudio.Play();
+                objAudioMusic.Play();
             }
             for (int i = 0; i < 3; i++)
             {
@@ -145,7 +153,7 @@ public class GameManager : MonoBehaviour
     }
     public void GameOverScreen()
     { 
-        objAudio.Stop();
+        objAudioMusic.Stop();
         MenuGameOver.SetActive(true);
         HUD.SetActive(false);
         if (Input.GetKeyDown(KeyCode.X))
@@ -167,14 +175,14 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 1;
                 if(!MuteGame)
                 {
-                    objAudio.UnPause();
+                    objAudioMusic.UnPause();
                 }
             }
             else
             {
                 PauseGame = true;
                 Time.timeScale = 0;
-                objAudio.Pause();
+                objAudioMusic.Pause();
             }
         }
     }
