@@ -10,12 +10,11 @@ public class MenuScript : MonoBehaviour
 
     #region Variables
     [Header("Menus")]
+    public GameObject MenuMain;
     public GameObject MenuStart;
     public GameObject MenuOptions;
     public GameObject MenuSound;
     public GameObject MenuGraphics;
-    [Header("Levels To Load")]
-    public string _newGameButtonLevel;
     #endregion
 
     #region Hidden Variables
@@ -68,9 +67,9 @@ public class MenuScript : MonoBehaviour
     #endregion
 
     #region Menu Buttons
-    public void ClickNewGameDialog()
+    public void ClickChangeScene(string NewScene)
     {
-        SceneManager.LoadScene(_newGameButtonLevel);
+        SceneManager.LoadScene(NewScene);
     }
     public void ClickExitGame()
     {
@@ -81,6 +80,12 @@ public class MenuScript : MonoBehaviour
         HideShowCanvas();
         objMenu.SetActive(true);
         StartTextSlider();
+    }
+    public void ClickResumeGame()
+    {
+        ClickShowMenu(MenuStart);
+        MenuMain.SetActive(false);
+        GameManager.Resumegame();
     }
     #endregion
 

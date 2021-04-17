@@ -9,12 +9,13 @@ public class GameManager : MonoBehaviour
 {
 
     #region Hidden Variables
+    [Header("Hidden")]
+    [HideInInspector] public bool StartGame = false;
+    [HideInInspector] public static bool PauseGame = false;
+    [HideInInspector] public bool GameOver = false;
     [HideInInspector] public static bool MuteGame;
     [HideInInspector] public List<GameObject> lstStar;
     [HideInInspector] public List<GameObject> lstAsteroid;
-    [HideInInspector] public bool GameOver = false;
-    [HideInInspector] public bool StartGame = false;
-    [HideInInspector] public bool PauseGame = false;
     [HideInInspector] public int Score = 0;
     [HideInInspector] public bool SkipStart = true;
     [HideInInspector] public AudioClip ClipBGM;
@@ -56,8 +57,9 @@ public class GameManager : MonoBehaviour
     #region General
     void Start()
     {
-        GameOver = false;
         StartGame = false;
+        PauseGame = false;
+        GameOver = false;
         objAsteroid.GetComponent<Obstacle>().GameManager = this;
         Score = 0;
         ClipBGM = Resources.Load<AudioClip>("Audio/magical_light_parade");
@@ -100,7 +102,7 @@ public class GameManager : MonoBehaviour
     }
     public void ToogleMute()
     {
-        if(objAudioMusic.isPlaying)
+        if (objAudioMusic.isPlaying)
         {
             objAudioMusic.Pause();
             MuteGame = true;
@@ -129,8 +131,10 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X) || SkipStart)
         {
             StartGame = true;
+            PauseGame = false;
             GameOver = false;
-            if(!MuteGame)
+            Time.timeScale = 1;
+            if (!MuteGame)
             {
                 objAudioMusic.Play();
             }
@@ -152,7 +156,7 @@ public class GameManager : MonoBehaviour
         FollowCamera();
     }
     public void GameOverScreen()
-    { 
+    {
         objAudioMusic.Stop();
         MenuGameOver.SetActive(true);
         HUD.SetActive(false);
@@ -169,11 +173,11 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(PauseGame)
+            if (PauseGame)
             {
                 PauseGame = false;
                 Time.timeScale = 1;
-                if(!MuteGame)
+                if (!MuteGame)
                 {
                     objAudioMusic.UnPause();
                 }
@@ -185,6 +189,11 @@ public class GameManager : MonoBehaviour
                 objAudioMusic.Pause();
             }
         }
+    }
+    public static void Resumegame()
+    {
+        PauseGame = false;
+        Time.timeScale = 1;
     }
     #endregion
 
