@@ -150,6 +150,10 @@ public class GameManager : MonoBehaviour
     }
     public void GameScreen()
     {
+        if (!PauseGame && !MuteGame)
+        {
+            objAudioMusic.UnPause();
+        }
         MenuStart.SetActive(false);
         MenuPause.SetActive(false);
         HUD.SetActive(true);
