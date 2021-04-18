@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -36,7 +33,7 @@ public class MenuScript : MonoBehaviour
         {
             if (Input.anyKey)
             {
-                ClickShowMenu(InitialMenu == null ? MenuStart : InitialMenu);
+                ClickShowMenu(MenuStart);
             }
         }
     }
