@@ -179,8 +179,16 @@ public class GameManager : MonoBehaviour
         {
             if (PauseGame)
             {
-                PauseGame = false;
-                Time.timeScale = 1;
+                var objMenu = MenuPause.GetComponent<MenuScript>();
+                if(objMenu != null)
+                {
+                    objMenu.ClickResumeGame();
+                }
+                else
+                {
+                    PauseGame = false;
+                    Time.timeScale = 1;
+                }
                 if (!MuteGame)
                 {
                     objAudioMusic.UnPause();

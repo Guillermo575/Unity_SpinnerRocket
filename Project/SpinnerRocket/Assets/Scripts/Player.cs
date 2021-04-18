@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
-        if (GameManager.StartGame && !GameManager.GameOver)
+        if (GameManager.StartGame && !GameManager.PauseGame && !GameManager.GameOver)
         {
             animator.SetBool("Death", false);
             var MinX = GameManager.minValues.x;
