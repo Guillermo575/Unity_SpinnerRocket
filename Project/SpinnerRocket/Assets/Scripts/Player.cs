@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
             if (collision.gameObject.tag == "Star")
             {
                 collision.gameObject.transform.position = new Vector3(UnityEngine.Random.Range(-9, 9), UnityEngine.Random.Range(-5, 5), 0);
-                GameManager.Score += 10;
+                GameManager.Score += 1;
             }
             if (collision.gameObject.tag == "Obstaculo")
             {

@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
 
     [Header("HUD")]
     public TextMeshProUGUI txtScore;
+    public TextMeshProUGUI txtHighScore;
     public Image btnSoundON;
     public Image btnSoundOFF;
 
@@ -86,7 +87,18 @@ public class GameManager : MonoBehaviour
         {
             PauseScreen();
         }
-        txtScore.text = "Score: " + Score;
+        if(txtScore != null)
+        {
+            txtScore.text = "Score: " + Score;
+        }
+        if (PlayerPrefs.GetInt("HighScore", 0) < Score)
+        {
+            PlayerPrefs.SetInt("HighScore", Score);
+        }
+        if (txtHighScore != null)
+        {
+            txtHighScore.text = "High: " + PlayerPrefs.GetInt("HighScore", 0);
+        }
         btnSoundON.enabled = !MuteGame;
         btnSoundOFF.enabled = MuteGame;
     }
