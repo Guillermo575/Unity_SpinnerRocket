@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -31,7 +32,7 @@ public class MenuScript : MonoBehaviour
     {
         if (MenuTitle != null && MenuTitle.activeSelf)
         {
-            if (Input.anyKey)
+            if (Input.anyKey && !string.IsNullOrEmpty(Input.inputString))
             {
                 ClickShowMenu(MenuStart);
             }
@@ -72,6 +73,11 @@ public class MenuScript : MonoBehaviour
         {
             HideShowCanvas();
             objMenu.SetActive(true);
+            Button[] buttons = this.GetComponentsInChildren<Button>();
+            if(buttons.Length > 0)
+            {
+                EventSystem.current.SetSelectedGameObject(buttons[0].gameObject);
+            }
         }
     }
     public void ClickResumeGame()
