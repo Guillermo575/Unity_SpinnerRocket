@@ -56,6 +56,12 @@ public class MenuScript : MonoBehaviour
             objMenu.SetActive(value);
         }
     }
+    public void ReactivateFocus()
+    {
+        var obj = EventSystem.current.currentSelectedGameObject;
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(obj);
+    }
     #endregion
 
     #region Menu Buttons
@@ -74,17 +80,23 @@ public class MenuScript : MonoBehaviour
             HideShowCanvas();
             objMenu.SetActive(true);
             Button[] buttons = this.GetComponentsInChildren<Button>();
-            if(buttons.Length > 0)
+            Slider[] Sliders = this.GetComponentsInChildren<Slider>();
+            if (buttons.Length > 0)
             {
                 EventSystem.current.SetSelectedGameObject(buttons[0].gameObject);
             }
+            if (Sliders.Length > 0)
+            {
+                EventSystem.current.SetSelectedGameObject(Sliders[0].gameObject);
+            }
+            ReactivateFocus();
         }
     }
     public void ClickResumeGame()
     {
         ClickShowMenu(MenuStart);
         this.gameObject.SetActive(false);
-        GameManager.Resumegame();
+        ReactivateFocus();
     }
     #endregion
 

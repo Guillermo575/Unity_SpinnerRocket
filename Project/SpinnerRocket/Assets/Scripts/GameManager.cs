@@ -80,13 +80,18 @@ public class GameManager : MonoBehaviour
         }
         if (StartGame && !GameOver)
         {
-            GameScreen();
+            if(!PauseGame)
+            {
+                GameScreen();
+            }
             CheckPause();
         }
-        if (PauseGame)
-        {
-            PauseScreen();
-        }
+        setScore();
+        btnSoundON.enabled = !MuteGame;
+        btnSoundOFF.enabled = MuteGame;
+    }
+    void setScore()
+    {
         if(txtScore != null)
         {
             txtScore.text = "Score: " + Score;
@@ -99,8 +104,6 @@ public class GameManager : MonoBehaviour
         {
             txtHighScore.text = "High: " + PlayerPrefs.GetInt("HighScore", 0);
         }
-        btnSoundON.enabled = !MuteGame;
-        btnSoundOFF.enabled = MuteGame;
     }
     void FollowCamera()
     {
@@ -180,13 +183,9 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
-    public void PauseScreen()
-    {
-        MenuPause.SetActive(true);
-    }
     public void CheckPause()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) || (PauseGame && !MenuPause.activeSelf))
         {
             if (PauseGame)
             {
@@ -195,28 +194,31 @@ public class GameManager : MonoBehaviour
                 {
                     objMenu.ClickResumeGame();
                 }
-                else
-                {
-                    PauseGame = false;
-                    Time.timeScale = 1;
-                }
-                if (!MuteGame)
-                {
-                    objAudioMusic.UnPause();
-                }
+                Resumegame();
+                MenuPause.SetActive(false);
             }
             else
             {
+                MenuPause.SetActive(true);
+                var objMenu = MenuPause.GetComponent<MenuScript>();
+                if (objMenu != null)
+                {
+                    objMenu.ReactivateFocus();
+                }
                 PauseGame = true;
                 Time.timeScale = 0;
                 objAudioMusic.Pause();
             }
         }
     }
-    public static void Resumegame()
+    public void Resumegame()
     {
         PauseGame = false;
         Time.timeScale = 1;
+        if (!MuteGame)
+        {
+            objAudioMusic.UnPause();
+        }
     }
     #endregion
 
