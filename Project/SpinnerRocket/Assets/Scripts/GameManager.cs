@@ -10,14 +10,19 @@ public class GameManager : MonoBehaviour
     #region Hidden Variables
     [Header("Hidden")]
     [HideInInspector] public bool StartGame = false;
-    [HideInInspector] public static bool PauseGame = false;
     [HideInInspector] public bool GameOver = false;
-    [HideInInspector] public static bool MuteGame;
     [HideInInspector] public List<GameObject> lstStar;
     [HideInInspector] public List<GameObject> lstAsteroid;
     [HideInInspector] public int Score = 0;
     [HideInInspector] public bool SkipStart = true;
     [HideInInspector] public AudioClip ClipBGM;
+    #endregion
+
+    #region Static variables
+    [Header("Static")]
+    [HideInInspector] public static bool PauseGame = false;
+    [HideInInspector] public static bool MuteGame;
+    [HideInInspector] public static bool BlockKeyBoard = false;
     #endregion
 
     #region Editor Variables 
@@ -54,7 +59,7 @@ public class GameManager : MonoBehaviour
     public float smoothFactor;
     #endregion
 
-    #region General
+    #region Start & Update
     void Start()
     {
         StartGame = false;
@@ -90,6 +95,9 @@ public class GameManager : MonoBehaviour
         btnSoundON.enabled = !MuteGame;
         btnSoundOFF.enabled = MuteGame;
     }
+    #endregion
+
+    #region General
     void setScore()
     {
         if(txtScore != null)
@@ -210,6 +218,10 @@ public class GameManager : MonoBehaviour
                 objAudioMusic.Pause();
             }
         }
+        if (!Input.GetKey("space") || Input.GetKeyUp("space"))
+        {
+            BlockKeyBoard = false;
+        }
     }
     public void Resumegame()
     {
@@ -219,6 +231,7 @@ public class GameManager : MonoBehaviour
         {
             objAudioMusic.UnPause();
         }
+        BlockKeyBoard = true;
     }
     #endregion
 

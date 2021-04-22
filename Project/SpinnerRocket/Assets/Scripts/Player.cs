@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
             var transformY = Mathf.Clamp(transform.position.y, MinY + RenderHeight, MaxY - RenderHeight);
             Stucked = Stucked == false ? !(transformX == transform.position.x && transformY == transform.position.y) : Stucked;
             transform.position = new Vector3(transformX, transformY, transform.position.z);
-            if (!Input.GetKey("space"))
+            if (!Input.GetKey("space") || GameManager.BlockKeyBoard)
             {
                 Stucked = false;
                 transform.Rotate(0, 0, -(RotationXMin * Time.deltaTime));
@@ -56,10 +56,6 @@ public class Player : MonoBehaviour
                 if (!InMovement)
                 {
                     InMovement = true;
-                    //var angles = (transform.rotation.z * Mathf.Rad2Deg) * Mathf.PI;
-                    //angles = Mathf.Round(angles / FraccAngle) * FraccAngle;
-                    //rigidbody.rotation = angles;
-                    //Debug.Log(angles);
                 }
                 setSpeed(SpeedMovement);
             }
@@ -106,9 +102,17 @@ public class Player : MonoBehaviour
     #endregion
 
 }
+
+#region OLD CODES
 //Vector2 newVelocity;
 //var angle = transform.rotation.z;
 //newVelocity.x = Mathf.Cos(angle) * Speed;
 //newVelocity.x = rigidbody.rotation > 90.0f || rigidbody.rotation < -90.0f ? -newVelocity.x : newVelocity.x;
 //newVelocity.y = Mathf.Sin(angle) * Speed;
 //rigidbody.velocity = (newVelocity);
+
+//var angles = (transform.rotation.z * Mathf.Rad2Deg) * Mathf.PI;
+//angles = Mathf.Round(angles / FraccAngle) * FraccAngle;
+//rigidbody.rotation = angles;
+//Debug.Log(angles);
+#endregion

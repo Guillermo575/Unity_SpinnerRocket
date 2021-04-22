@@ -17,12 +17,6 @@ public class MenuScript : MonoBehaviour
     public GameObject MenuGraphics;
     #endregion
 
-    #region Hidden Variables
-    [HideInInspector] public const float defaultVolume = 1.0f;
-    [HideInInspector] public const float defaultSound = 1.0f;
-    [HideInInspector] public const float defaultBrightness = 1.0f;
-    #endregion
-
     #region Start & Update
     void Start()
     {
@@ -97,49 +91,6 @@ public class MenuScript : MonoBehaviour
         ClickShowMenu(MenuStart);
         this.gameObject.SetActive(false);
         ReactivateFocus();
-    }
-    #endregion
-
-    #region Reset Buttons
-    public void ResetVolume()
-    {
-        Slider SliderVolume = GameObject.Find("SliderMusic").GetComponent<Slider>();
-        Slider SliderSound = GameObject.Find("SliderSound").GetComponent<Slider>();
-        PlayerPrefs.SetFloat("masterVolume", defaultVolume);
-        PlayerPrefs.SetFloat("masterSound", defaultSound);
-        SliderVolume.value = defaultVolume;
-        SliderSound.value = defaultSound;
-        TextMeshProUGUI LabelSoundStatus = GameObject.Find("LabelSoundStatus").GetComponent<TextMeshProUGUI>();
-        LabelSoundStatus.text = "Changes restored!";
-    }
-    public void ResetGraphics()
-    {
-        Slider SliderBrightness = GameObject.Find("SliderBrightness").GetComponent<Slider>();
-        PlayerPrefs.SetFloat("masterBrightness", defaultBrightness);
-        SliderBrightness.value = defaultBrightness;
-        TextMeshProUGUI LabelGraphicStatus = GameObject.Find("LabelGraphicStatus").GetComponent<TextMeshProUGUI>();
-        LabelGraphicStatus.text = "Changes restored!";
-    }
-    #endregion
-
-    #region Apply Buttons
-    public void ApplyVolume()
-    {
-        Slider SliderVolume = GameObject.Find("SliderMusic").GetComponent<Slider>();
-        Slider SliderSound = GameObject.Find("SliderSound").GetComponent<Slider>();
-        PlayerPrefs.SetFloat("masterVolume", SliderVolume.value);
-        PlayerPrefs.SetFloat("masterSound", SliderSound.value);
-        Debug.Log(PlayerPrefs.GetFloat("masterVolume") + " " + PlayerPrefs.GetFloat("masterSound"));
-        TextMeshProUGUI LabelSoundStatus = GameObject.Find("LabelSoundStatus").GetComponent<TextMeshProUGUI>();
-        LabelSoundStatus.text = "Changes Saved!";
-    }
-    public void ApplyGraphics()
-    {
-        Slider SliderBrightness = GameObject.Find("SliderBrightness").GetComponent<Slider>();
-        PlayerPrefs.SetFloat("masterBrightness", SliderBrightness.value);
-        Debug.Log(PlayerPrefs.GetFloat("masterBrightness"));
-        TextMeshProUGUI LabelGraphicStatus = GameObject.Find("LabelGraphicStatus").GetComponent<TextMeshProUGUI>();
-        LabelGraphicStatus.text = "Changes Saved!";
     }
     #endregion
 
