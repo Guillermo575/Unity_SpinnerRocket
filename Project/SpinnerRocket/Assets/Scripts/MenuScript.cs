@@ -1,26 +1,20 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
 public class MenuScript : MonoBehaviour
 {
-
     #region Variables
     [Header("Menus")]
     public GameObject InitialMenu;
-    public GameObject MenuTitle;
-    public GameObject MenuStart;
-    public GameObject MenuOptions;
-    public GameObject MenuSound;
-    public GameObject MenuGraphics;
+    public GameObject GameOverMenu;
+    public GameObject LevelClearedMenu;
     #endregion
 
     #region Start & Update
     void Start()
     {
-        ClickShowMenu(InitialMenu == null ? MenuStart : InitialMenu);
+        ClickShowMenu(InitialMenu);
     }
     void Update()
     {
@@ -30,11 +24,11 @@ public class MenuScript : MonoBehaviour
     #region General
     public void HideShowCanvas(bool value = false)
     {
-        HideShowIfExist(MenuTitle);
-        HideShowIfExist(MenuStart);
-        HideShowIfExist(MenuOptions);
-        HideShowIfExist(MenuSound);
-        HideShowIfExist(MenuGraphics);
+        var lst = this.gameObject.GetComponentsInChildren<Canvas>(true);
+        foreach(var x in lst)
+        {
+            HideShowIfExist(x.gameObject);
+        }
     }
     public void HideShowIfExist(GameObject objMenu, bool value = false)
     {
@@ -81,10 +75,9 @@ public class MenuScript : MonoBehaviour
     }
     public void ClickResumeGame()
     {
-        ClickShowMenu(MenuStart);
+        ClickShowMenu(InitialMenu);
         this.gameObject.SetActive(false);
         ReactivateFocus();
     }
     #endregion
-
 }

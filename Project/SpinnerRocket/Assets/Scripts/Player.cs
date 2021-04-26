@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
-
 public class Player : MonoBehaviour
 {
-
     #region Variables
     private Rigidbody2D rigidbody2D;
     private Animator animator;
@@ -97,12 +95,10 @@ public class Player : MonoBehaviour
             newVelocity.x = 0;
             newVelocity.y = 0;
         }
-        rigidbody.velocity = (newVelocity);
+        rigidbody.velocity = newVelocity;
     }
     #endregion
-
 }
-
 #region OLD CODES
 //Vector2 newVelocity;
 //var angle = transform.rotation.z;

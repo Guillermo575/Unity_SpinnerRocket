@@ -1,10 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
-
     #region Variable
     private Transform transform;
     private Rigidbody2D rigidbody;
@@ -78,5 +74,4 @@ public class Obstacle : MonoBehaviour
         transform.rotation = Quaternion.Euler(Vector3.forward * (angle + offset));
     }
     #endregion
-
 }

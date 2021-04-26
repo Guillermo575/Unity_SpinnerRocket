@@ -1,5 +1,4 @@
 ﻿using UnityEngine.EventSystems;
-
 public class OnlyKeyBoardInputModule : StandaloneInputModule
 {
     public bool isMouseInputActive = false;

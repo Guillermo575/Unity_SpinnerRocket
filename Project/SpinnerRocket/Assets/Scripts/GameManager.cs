@@ -3,10 +3,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
 public class GameManager : MonoBehaviour
 {
-
     #region Hidden Variables
     [Header("Hidden")]
     [HideInInspector] public bool StartGame = false;
@@ -191,6 +189,9 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
+    #endregion
+
+    #region Pause & Resume
     public void CheckPause()
     {
         if (Input.GetKeyDown(KeyCode.Escape) || (PauseGame && !MenuPause.activeSelf))
@@ -234,5 +235,4 @@ public class GameManager : MonoBehaviour
         BlockKeyBoard = true;
     }
     #endregion
-
 }

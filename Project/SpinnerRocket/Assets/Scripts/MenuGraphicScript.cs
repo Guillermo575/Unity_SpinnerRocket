@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class MenuGraphicScript : MonoBehaviour
 {
     #region Hidden Variables
@@ -25,7 +22,6 @@ public class MenuGraphicScript : MonoBehaviour
     {
         Slider SliderBrightness = GameObject.Find("SliderBrightness").GetComponent<Slider>();
         PlayerPrefs.SetFloat("masterBrightness", SliderBrightness.value);
-        Debug.Log(PlayerPrefs.GetFloat("masterBrightness"));
         TextMeshProUGUI LabelGraphicStatus = GameObject.Find("LabelGraphicStatus").GetComponent<TextMeshProUGUI>();
         LabelGraphicStatus.text = "Changes Saved!";
     }

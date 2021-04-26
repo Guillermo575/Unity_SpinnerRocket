@@ -1,12 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class MenuSoundScript : MonoBehaviour
 {
-
     #region Hidden Variables
     [HideInInspector] public const float defaultVolume = 1.0f;
     [HideInInspector] public const float defaultSound = 1.0f;
@@ -30,7 +26,6 @@ public class MenuSoundScript : MonoBehaviour
         Slider SliderSound = GameObject.Find("SliderSound").GetComponent<Slider>();
         PlayerPrefs.SetFloat("masterVolume", SliderVolume.value);
         PlayerPrefs.SetFloat("masterSound", SliderSound.value);
-        Debug.Log(PlayerPrefs.GetFloat("masterVolume") + " " + PlayerPrefs.GetFloat("masterSound"));
         TextMeshProUGUI LabelSoundStatus = GameObject.Find("LabelSoundStatus").GetComponent<TextMeshProUGUI>();
         LabelSoundStatus.text = "Changes Saved!";
     }
@@ -53,5 +48,4 @@ public class MenuSoundScript : MonoBehaviour
         LabelSoundStatus.text = "Changes restored!";
     }
     #endregion
-
 }
