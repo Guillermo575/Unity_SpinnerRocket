@@ -24,13 +24,6 @@ public class MenuScript : MonoBehaviour
     }
     void Update()
     {
-        if (MenuTitle != null && MenuTitle.activeSelf)
-        {
-            if (Input.anyKey && !string.IsNullOrEmpty(Input.inputString))
-            {
-                ClickShowMenu(MenuStart);
-            }
-        }
     }
     #endregion
 

@@ -359,6 +359,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8272256372594511042, guid: 25b6520fa59ac894eb335b44c64a5d17,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 3009384809168134539}
     - target: {fileID: 8365237085475245633, guid: 25b6520fa59ac894eb335b44c64a5d17,
         type: 3}
       propertyPath: m_Text
@@ -366,3 +371,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25b6520fa59ac894eb335b44c64a5d17, type: 3}
+--- !u!1 &3009384809168134539 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3009384809984479014, guid: 25b6520fa59ac894eb335b44c64a5d17,
+    type: 3}
+  m_PrefabInstance: {fileID: 3009384809168134538}
+  m_PrefabAsset: {fileID: 0}
