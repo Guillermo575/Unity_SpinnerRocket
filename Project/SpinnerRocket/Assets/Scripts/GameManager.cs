@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
@@ -35,7 +34,6 @@ public class GameManager : MonoBehaviour
 
     [Header("Menu")]
     public GameObject MenuStart;
-    public GameObject MenuGameOver;
     public GameObject HUD;
     public GameObject MenuPause;
 
@@ -181,12 +179,12 @@ public class GameManager : MonoBehaviour
     }
     public void GameOverScreen()
     {
-        objAudioMusic.Stop();
-        MenuGameOver.SetActive(true);
-        HUD.SetActive(false);
-        if (Input.GetKeyDown(KeyCode.X))
+        var objMenu = MenuPause.GetComponent<MenuScript>();
+        if (objMenu != null && !objMenu.gameObject.activeSelf)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            objAudioMusic.Stop();
+            HUD.SetActive(false);
+            objMenu.ClickGameOver();
         }
     }
     #endregion

@@ -79,5 +79,17 @@ public class MenuScript : MonoBehaviour
         this.gameObject.SetActive(false);
         ReactivateFocus();
     }
+    public void ClickGameOver()
+    {
+        ClickShowMenu(GameOverMenu);
+        this.gameObject.SetActive(true);
+        ReactivateFocus();
+    }
+    public void ClickLevelCleared()
+    {
+        ClickShowMenu(LevelClearedMenu);
+        this.gameObject.SetActive(true);
+        ReactivateFocus();
+    }
     #endregion
 }
