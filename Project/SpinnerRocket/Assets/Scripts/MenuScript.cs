@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -6,6 +7,7 @@ public class MenuScript : MonoBehaviour
 {
     #region Variables
     [Header("Menus")]
+    public List<GameObject> lstMenuTree;
     public GameObject InitialMenu;
     public GameObject GameOverMenu;
     public GameObject LevelClearedMenu;
@@ -14,6 +16,7 @@ public class MenuScript : MonoBehaviour
     #region Start & Update
     void Start()
     {
+        lstMenuTree = new List<GameObject>();
         ClickShowMenu(InitialMenu);
     }
     void Update()
@@ -60,6 +63,7 @@ public class MenuScript : MonoBehaviour
         {
             HideShowCanvas();
             objMenu.SetActive(true);
+            lstMenuTree.Add(objMenu);
             Button[] buttons = this.GetComponentsInChildren<Button>();
             Slider[] Sliders = this.GetComponentsInChildren<Slider>();
             if (buttons.Length > 0)
@@ -73,8 +77,19 @@ public class MenuScript : MonoBehaviour
             ReactivateFocus();
         }
     }
+    public void ClickBackMenu()
+    {
+        if(lstMenuTree.Count > 1)
+        {
+            var objBack = lstMenuTree[lstMenuTree.Count - 2];
+            lstMenuTree.Remove(lstMenuTree[lstMenuTree.Count - 1]);
+            ClickShowMenu(objBack);
+            lstMenuTree.Remove(lstMenuTree[lstMenuTree.Count - 1]);
+        }
+    }
     public void ClickResumeGame()
     {
+        lstMenuTree = new List<GameObject>();
         ClickShowMenu(InitialMenu);
         this.gameObject.SetActive(false);
         ReactivateFocus();
