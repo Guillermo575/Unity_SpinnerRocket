@@ -88,6 +88,7 @@ public class GameManager : MonoBehaviour
             CheckPause();
         }
         setScore();
+        CheckConfig();
         btnSoundON.enabled = !MuteGame;
         btnSoundOFF.enabled = MuteGame;
     }
@@ -136,6 +137,24 @@ public class GameManager : MonoBehaviour
             {
                 objAudioMusic.Play();
             }
+        }
+    }
+    public void CheckConfig()
+    {
+        if (PlayerPrefs.GetInt("GraphicsChanged", 0) == 1)
+        {
+            HUD.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.5f * (1 - PlayerPrefs.GetFloat("masterBrightness", 1)));
+            PlayerPrefs.SetInt("GraphicsChanged", 0);
+        }
+        if (PlayerPrefs.GetInt("VolumeChanged", 0) == 1)
+        {
+            objAudioMusic.volume = PlayerPrefs.GetFloat("masterVolume", 1);
+            objAudioSound.volume = PlayerPrefs.GetFloat("masterSound", 1);
+            if (!objAudioMusic.isPlaying && !PauseGame)
+            {
+                objAudioMusic.Play();
+            }
+            PlayerPrefs.SetInt("VolumeChanged", 0);
         }
     }
     #endregion

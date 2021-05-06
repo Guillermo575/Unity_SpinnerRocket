@@ -27,6 +27,7 @@ public class MenuSoundScript : MonoBehaviour
         PlayerPrefs.SetFloat("masterVolume", SliderVolume.value);
         PlayerPrefs.SetFloat("masterSound", SliderSound.value);
         TextMeshProUGUI LabelSoundStatus = GameObject.Find("LabelSoundStatus").GetComponent<TextMeshProUGUI>();
+        PlayerPrefs.SetInt("VolumeChanged", 1);
         LabelSoundStatus.text = "Changes Saved!";
     }
     public void SetSlider()
@@ -45,6 +46,7 @@ public class MenuSoundScript : MonoBehaviour
         SliderVolume.value = defaultVolume;
         SliderSound.value = defaultSound;
         TextMeshProUGUI LabelSoundStatus = GameObject.Find("LabelSoundStatus").GetComponent<TextMeshProUGUI>();
+        PlayerPrefs.SetInt("VolumeChanged", 1);
         LabelSoundStatus.text = "Changes restored!";
     }
     #endregion

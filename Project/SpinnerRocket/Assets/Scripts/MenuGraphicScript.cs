@@ -23,6 +23,7 @@ public class MenuGraphicScript : MonoBehaviour
         Slider SliderBrightness = GameObject.Find("SliderBrightness").GetComponent<Slider>();
         PlayerPrefs.SetFloat("masterBrightness", SliderBrightness.value);
         TextMeshProUGUI LabelGraphicStatus = GameObject.Find("LabelGraphicStatus").GetComponent<TextMeshProUGUI>();
+        PlayerPrefs.SetInt("GraphicsChanged", 1);
         LabelGraphicStatus.text = "Changes Saved!";
     }
     public void SetSlider()
@@ -36,6 +37,7 @@ public class MenuGraphicScript : MonoBehaviour
         PlayerPrefs.SetFloat("masterBrightness", defaultBrightness);
         SliderBrightness.value = defaultBrightness;
         TextMeshProUGUI LabelGraphicStatus = GameObject.Find("LabelGraphicStatus").GetComponent<TextMeshProUGUI>();
+        PlayerPrefs.SetInt("GraphicsChanged", 1);
         LabelGraphicStatus.text = "Changes restored!";
     }
     #endregion
