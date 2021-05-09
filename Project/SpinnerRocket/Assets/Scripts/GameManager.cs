@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public List<GameObject> lstStar;
     [HideInInspector] public List<GameObject> lstAsteroid;
     [HideInInspector] public int Score = 0;
-    [HideInInspector] public bool SkipStart = true;
     [HideInInspector] public AudioClip ClipBGM;
     #endregion
 
@@ -33,7 +32,6 @@ public class GameManager : MonoBehaviour
     public AudioSource objAudioSound;
 
     [Header("Menu")]
-    public GameObject MenuStart;
     public GameObject HUD;
     public GameObject MenuPause;
 
@@ -162,28 +160,24 @@ public class GameManager : MonoBehaviour
     #region Screens
     public void StartMenuGame()
     {
-        MenuStart.SetActive(true);
         MenuPause.SetActive(false);
         HUD.SetActive(false);
-        if (Input.GetKeyDown(KeyCode.X) || SkipStart)
+        StartGame = true;
+        PauseGame = false;
+        GameOver = false;
+        Time.timeScale = 1;
+        if (!MuteGame)
         {
-            StartGame = true;
-            PauseGame = false;
-            GameOver = false;
-            Time.timeScale = 1;
-            if (!MuteGame)
-            {
-                objAudioMusic.Play();
-            }
-            for (int i = 0; i < 3; i++)
-            {
-                lstStar.Add(Instantiate(objStar, new Vector2(UnityEngine.Random.Range(minValues.x, maxValues.x), UnityEngine.Random.Range(minValues.y, maxValues.y)), Quaternion.identity));
-            }
-            for (int i = 0; i < 6; i++)
-            {
-                lstAsteroid.Add(Instantiate(objAsteroid, objAsteroid.GetComponent<Obstacle>().getRandomSpawnPoint(), Quaternion.identity));
-            }
-        };
+            objAudioMusic.Play();
+        }
+        for (int i = 0; i < 3; i++)
+        {
+            lstStar.Add(Instantiate(objStar, new Vector2(UnityEngine.Random.Range(minValues.x, maxValues.x), UnityEngine.Random.Range(minValues.y, maxValues.y)), Quaternion.identity));
+        }
+        for (int i = 0; i < 6; i++)
+        {
+            lstAsteroid.Add(Instantiate(objAsteroid, objAsteroid.GetComponent<Obstacle>().getRandomSpawnPoint(), Quaternion.identity));
+        }
     }
     public void GameScreen()
     {
@@ -191,7 +185,6 @@ public class GameManager : MonoBehaviour
         {
             objAudioMusic.UnPause();
         }
-        MenuStart.SetActive(false);
         MenuPause.SetActive(false);
         HUD.SetActive(true);
         FollowCamera();
