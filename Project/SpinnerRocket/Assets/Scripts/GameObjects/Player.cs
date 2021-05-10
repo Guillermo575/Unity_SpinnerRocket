@@ -1,15 +1,21 @@
 ﻿using UnityEngine;
 public class Player : MonoBehaviour
 {
-    #region Variables
+    #region Variables Privadas
     private Rigidbody2D rigidbody2D;
     private Animator animator;
     private Transform transform;
     private Rigidbody2D rigidbody;
     private Renderer renderer;
+    #endregion
 
+    #region Hidden Variables
     [HideInInspector] public bool InMovement = false;
     [HideInInspector] public float FraccAngle = 360/8;
+    [HideInInspector] MathRNG objMathRNG = new MathRNG(517643879);
+    #endregion
+
+    #region Editor Variables
     public bool Stucked = false;
     public GameManager GameManager;
     public int RotationXMin = 180;
@@ -69,7 +75,7 @@ public class Player : MonoBehaviour
         {
             if (collision.gameObject.tag == "Star")
             {
-                collision.gameObject.transform.position = new Vector3(UnityEngine.Random.Range(-9, 9), UnityEngine.Random.Range(-5, 5), 0);
+                collision.gameObject.transform.position = new Vector3((float)objMathRNG.NextValue(-9, 9), (float)objMathRNG.NextValue(-5, 5), 0);
                 GameManager.Score += 1;
             }
             if (collision.gameObject.tag == "Obstaculo")

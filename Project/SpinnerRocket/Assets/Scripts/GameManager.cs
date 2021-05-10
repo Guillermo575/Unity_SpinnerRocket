@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public List<GameObject> lstAsteroid;
     [HideInInspector] public int Score = 0;
     [HideInInspector] public AudioClip ClipBGM;
+    [HideInInspector] public MathRNG objMathRNG = new MathRNG(45289574);
     #endregion
 
     #region Static variables
@@ -172,7 +173,7 @@ public class GameManager : MonoBehaviour
         }
         for (int i = 0; i < 3; i++)
         {
-            lstStar.Add(Instantiate(objStar, new Vector2(UnityEngine.Random.Range(minValues.x, maxValues.x), UnityEngine.Random.Range(minValues.y, maxValues.y)), Quaternion.identity));
+            lstStar.Add(Instantiate(objStar, new Vector2((float)objMathRNG.NextValue(-9, 9), (float)objMathRNG.NextValue(-5, 5)), Quaternion.identity));
         }
         for (int i = 0; i < 6; i++)
         {

@@ -7,7 +7,7 @@ public class MenuScript : MonoBehaviour
 {
     #region Variables
     [Header("Menus")]
-    public List<GameObject> lstMenuTree;
+    [HideInInspector] public List<GameObject> lstMenuTree;
     public GameObject InitialMenu;
     public GameObject GameOverMenu;
     public GameObject LevelClearedMenu;
