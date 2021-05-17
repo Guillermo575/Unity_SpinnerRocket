@@ -75,7 +75,7 @@ public class Player : MonoBehaviour
         {
             if (collision.gameObject.tag == "Star")
             {
-                collision.gameObject.transform.position = new Vector3((float)objMathRNG.NextValue(-9, 9), (float)objMathRNG.NextValue(-5, 5), 0);
+                collision.gameObject.transform.position = new Vector3(objMathRNG.NextValueFloat(-9, 9), objMathRNG.NextValueFloat(-5, 5), 0);
                 GameManager.Score += 1;
             }
             if (collision.gameObject.tag == "Obstaculo")

@@ -40,14 +40,15 @@ public class Obstacle : MonoBehaviour
     }
     public Vector2 getRandomSpawnPoint()
     {
-        var RanX = (Int32)GameManager.objMathRNG.NextValue(0, 3);
+        var RanX = GameManager.objMathRNG.NextValueInt(0, 3);
         Vector2 vecSpawn = new Vector2();
         switch (RanX)
         {
-            case 0: vecSpawn = new Vector2((float)GameManager.objMathRNG.NextValue((decimal)GameManager.minValues.x, (decimal)GameManager.maxValues.x), GameManager.maxValues.y); break;
-            case 1: vecSpawn = new Vector2((float)GameManager.objMathRNG.NextValue((decimal)GameManager.minValues.x, (decimal)GameManager.maxValues.x), GameManager.minValues.y); break;
-            case 2: vecSpawn = new Vector2(GameManager.maxValues.x, (float)GameManager.objMathRNG.NextValue((decimal)GameManager.minValues.y, (decimal)GameManager.maxValues.y)); break;
-            case 3: vecSpawn = new Vector2(GameManager.minValues.x, (float)GameManager.objMathRNG.NextValue((decimal)GameManager.minValues.y, (decimal)GameManager.maxValues.y)); break;
+            case 0: vecSpawn = new Vector2(GameManager.objMathRNG.NextValueFloat(GameManager.minValues.x, GameManager.maxValues.x), GameManager.maxValues.y); break;
+            case 1: vecSpawn = new Vector2(GameManager.objMathRNG.NextValueFloat(GameManager.minValues.x, GameManager.maxValues.x), GameManager.minValues.y); break;
+            case 2: vecSpawn = new Vector2(GameManager.maxValues.x, GameManager.objMathRNG.NextValueFloat(GameManager.minValues.y, GameManager.maxValues.y)); break;
+            case 3: vecSpawn = new Vector2(GameManager.minValues.x, GameManager.objMathRNG.NextValueFloat(GameManager.minValues.y, GameManager.maxValues.y)); break;
+            default: vecSpawn = new Vector2(GameManager.objMathRNG.NextValueFloat(GameManager.minValues.x, GameManager.maxValues.x), GameManager.maxValues.y); break;
         }
         return vecSpawn;
     }

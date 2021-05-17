@@ -44,6 +44,33 @@ public class MathRNG
     }
     #endregion
 
+    #region NextValues (Other Numeric Values)
+    public float NextValueFloat()
+    {
+        return (float)NextValue(MinValue, MaxValue);
+    }
+    public float NextValueFloat(float MinValue, float MaxValue)
+    {
+        return (float)NextValue((decimal)MinValue, (decimal)MaxValue);
+    }
+    public double NextValueDouble()
+    {
+        return (double)NextValue(MinValue, MaxValue);
+    }
+    public float NextValueDouble(double MinValue, double MaxValue)
+    {
+        return (float)NextValue((decimal)MinValue, (decimal)MaxValue);
+    }
+    public Int32 NextValueInt()
+    {
+        return (Int32)Decimal.Round(NextValue(MinValue, MaxValue));
+    }
+    public Int32 NextValueInt(double MinValue, double MaxValue)
+    {
+        return (Int32)Decimal.Round(NextValue((decimal)MinValue, (decimal)MaxValue));
+    }
+    #endregion
+
     #region Test Area
     public static void Testing()
     {
