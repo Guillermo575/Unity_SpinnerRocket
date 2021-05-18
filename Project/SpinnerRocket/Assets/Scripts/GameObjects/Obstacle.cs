@@ -3,11 +3,12 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
     #region Variable
-    private Transform transform;
-    private Rigidbody2D rigidbody;
+    [HideInInspector] private Transform transform;
+    [HideInInspector] private Rigidbody2D rigidbody;
 
-    private Vector2 target = new Vector2();
-    public GameManager GameManager;
+    [HideInInspector] public GameObject objTarget;
+    [HideInInspector] private Vector2 target = new Vector2();
+    [HideInInspector] public GameManager GameManager;
     #endregion
 
     #region General
@@ -15,8 +16,8 @@ public class Obstacle : MonoBehaviour
     {
         transform = GetComponent<Transform>();
         rigidbody = GetComponent<Rigidbody2D>();
-        target = GameManager.objPlayer.transform.position;
-        RotateTowards(target);
+        objTarget = GameManager.objPlayer;
+        RotateTowards(objTarget.transform.position);
     }
     void Update()
     {
@@ -26,11 +27,9 @@ public class Obstacle : MonoBehaviour
                 transform.position.y < GameManager.minValues.y - 1 || transform.position.y > GameManager.maxValues.y + 1)
             {
                 transform.position = getRandomSpawnPoint();
-                target = GameManager.objPlayer.transform.position;
-                RotateTowards(target);
+                RotateTowards(objTarget.transform.position);
             }
-            //target = GameManager.objPlayer.transform.position;
-            //RotateTowards(target);
+            //RotateTowards(objTarget.transform.position);
             setSpeed(3);
         }
         else
@@ -69,6 +68,7 @@ public class Obstacle : MonoBehaviour
     }
     public void RotateTowards(Vector2 target)
     {
+        this.target = target == null ? new Vector2(0f, 0f) : target;
         var offset = 180f;
         Vector2 direction = (Vector2)transform.position - target;
         direction.Normalize();
