@@ -177,7 +177,7 @@ public class GameManager : MonoBehaviour
         }
         for (int i = 0; i < 6; i++)
         {
-            lstAsteroid.Add(Instantiate(objAsteroid, objAsteroid.GetComponent<Obstacle>().getRandomSpawnPoint(), Quaternion.identity));
+            lstAsteroid.Add(Instantiate(objAsteroid, objMathRNG.getRandomSpawnPoint(minValues, maxValues), Quaternion.identity));
         }
     }
     public void GameScreen()

@@ -71,21 +71,6 @@ public class MathRNG
     }
     #endregion
 
-    public Vector2 getRandomSpawnPoint(Vector2 minValues, Vector2 maxValues)
-    {
-        var RanX = NextValueInt(0, 3);
-        Vector2 vecSpawn = new Vector2();
-        switch (RanX)
-        {
-            case 0: vecSpawn = new Vector2(NextValueFloat(minValues.x, maxValues.x), maxValues.y); break;
-            case 1: vecSpawn = new Vector2(NextValueFloat(minValues.x, maxValues.x), minValues.y); break;
-            case 2: vecSpawn = new Vector2(maxValues.x, NextValueFloat(minValues.y, maxValues.y)); break;
-            case 3: vecSpawn = new Vector2(minValues.x, NextValueFloat(minValues.y, maxValues.y)); break;
-            default: vecSpawn = new Vector2(NextValueFloat(minValues.x, maxValues.x), maxValues.y); break;
-        }
-        return vecSpawn;
-    }
-
     #region Test Area
     public static void Testing()
     {
@@ -113,6 +98,23 @@ public class MathRNG
         Debug.Log("Maximo: " + Maximo);
         Debug.Log("Promedio: " + SumatoriaProm);
         Debug.Log("Minimo: " + Minimo);
+    }
+    #endregion
+
+    #region Tools
+    public Vector2 getRandomSpawnPoint(Vector2 minValues, Vector2 maxValues)
+    {
+        var RanX = NextValueInt(0, 3);
+        Vector2 vecSpawn = new Vector2();
+        switch (RanX)
+        {
+            case 0: vecSpawn = new Vector2(NextValueFloat(minValues.x, maxValues.x), maxValues.y); break;
+            case 1: vecSpawn = new Vector2(NextValueFloat(minValues.x, maxValues.x), minValues.y); break;
+            case 2: vecSpawn = new Vector2(maxValues.x, NextValueFloat(minValues.y, maxValues.y)); break;
+            case 3: vecSpawn = new Vector2(minValues.x, NextValueFloat(minValues.y, maxValues.y)); break;
+            default: vecSpawn = new Vector2(NextValueFloat(minValues.x, maxValues.x), maxValues.y); break;
+        }
+        return vecSpawn;
     }
     #endregion
 }

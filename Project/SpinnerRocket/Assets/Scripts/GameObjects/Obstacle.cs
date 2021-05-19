@@ -26,7 +26,7 @@ public class Obstacle : MonoBehaviour
             if (transform.position.x < GameManager.minValues.x - 1 || transform.position.x > GameManager.maxValues.x + 1 || 
                 transform.position.y < GameManager.minValues.y - 1 || transform.position.y > GameManager.maxValues.y + 1)
             {
-                transform.position = getRandomSpawnPoint();
+                transform.position = GameManager.objMathRNG.getRandomSpawnPoint(GameManager.minValues, GameManager.maxValues);
                 RotateTowards(objTarget.transform.position);
             }
             //RotateTowards(objTarget.transform.position);
@@ -36,20 +36,6 @@ public class Obstacle : MonoBehaviour
         {
             setSpeed(0);
         }
-    }
-    public Vector2 getRandomSpawnPoint()
-    {
-        var RanX = GameManager.objMathRNG.NextValueInt(0, 3);
-        Vector2 vecSpawn = new Vector2();
-        switch (RanX)
-        {
-            case 0: vecSpawn = new Vector2(GameManager.objMathRNG.NextValueFloat(GameManager.minValues.x, GameManager.maxValues.x), GameManager.maxValues.y); break;
-            case 1: vecSpawn = new Vector2(GameManager.objMathRNG.NextValueFloat(GameManager.minValues.x, GameManager.maxValues.x), GameManager.minValues.y); break;
-            case 2: vecSpawn = new Vector2(GameManager.maxValues.x, GameManager.objMathRNG.NextValueFloat(GameManager.minValues.y, GameManager.maxValues.y)); break;
-            case 3: vecSpawn = new Vector2(GameManager.minValues.x, GameManager.objMathRNG.NextValueFloat(GameManager.minValues.y, GameManager.maxValues.y)); break;
-            default: vecSpawn = new Vector2(GameManager.objMathRNG.NextValueFloat(GameManager.minValues.x, GameManager.maxValues.x), GameManager.maxValues.y); break;
-        }
-        return vecSpawn;
     }
     #endregion
 
