@@ -1,23 +1,20 @@
 ﻿using UnityEngine;
 public class Player : MonoBehaviour
 {
-    #region Variables Privadas
+    #region Private and Hidden Variables
     private Rigidbody2D rigidbody2D;
     private Animator animator;
     private Transform transform;
     private Rigidbody2D rigidbody;
     private Renderer renderer;
-    #endregion
-
-    #region Hidden Variables
     [HideInInspector] public bool InMovement = false;
     [HideInInspector] public float FraccAngle = 360/8;
+    [HideInInspector] public bool Stucked = false;
+    [HideInInspector] public GameManager GameManager;
     [HideInInspector] MathRNG objMathRNG = new MathRNG(517643879);
     #endregion
 
     #region Editor Variables
-    public bool Stucked = false;
-    public GameManager GameManager;
     public int RotationXMin = 180;
     public int SpeedMovement = 15;
     #endregion

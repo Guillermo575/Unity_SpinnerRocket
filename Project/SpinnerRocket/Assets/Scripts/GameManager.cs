@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
         PauseGame = false;
         GameOver = false;
         objAsteroid.GetComponent<Obstacle>().GameManager = this;
+        objAsteroid.GetComponent<Obstacle>().objTarget = objPlayer;
         Score = 0;
         ClipBGM = Resources.Load<AudioClip>("Audio/magical_light_parade");
         objAudioMusic.clip = ClipBGM;
