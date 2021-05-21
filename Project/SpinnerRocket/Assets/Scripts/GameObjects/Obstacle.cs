@@ -14,6 +14,8 @@ public class Obstacle : MonoBehaviour
     {
         transform = GetComponent<Transform>();
         rigidbody = GetComponent<Rigidbody2D>();
+        GameManager = GameObject.Find("GameManager").gameObject.GetComponentsInChildren<GameManager>(true)[0];
+        objTarget = GameManager.objPlayer;
     }
     void Update()
     {

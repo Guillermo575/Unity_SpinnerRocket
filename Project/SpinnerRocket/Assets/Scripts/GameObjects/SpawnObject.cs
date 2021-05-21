@@ -36,8 +36,8 @@ public class SpawnObject : MonoBehaviour
             Vector2 position = new Vector2();
             switch(type)
             {
-                case SpawnType.Border: position = new Vector2(objMathRNG.NextValueFloat(minValues.x, maxValues.x), objMathRNG.NextValueFloat(minValues.y, maxValues.y)); break;
-                case SpawnType.InScene: position = objMathRNG.getRandomSpawnPoint(minValues, maxValues); break;
+                case SpawnType.Border: position = objMathRNG.getRandomSpawnPoint(minValues, maxValues); break;
+                case SpawnType.InScene: position = new Vector2(objMathRNG.NextValueFloat(minValues.x, maxValues.x), objMathRNG.NextValueFloat(minValues.y, maxValues.y)); break;
             }
             lstObj.Add(Instantiate(obj, position, Quaternion.identity));
         }

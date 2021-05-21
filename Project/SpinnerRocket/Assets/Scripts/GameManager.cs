@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 public class GameManager : MonoBehaviour
@@ -8,11 +7,10 @@ public class GameManager : MonoBehaviour
     [Header("Hidden")]
     [HideInInspector] public bool StartGame = false;
     [HideInInspector] public bool GameOver = false;
-    [HideInInspector] public List<GameObject> lstStar;
-    [HideInInspector] public List<GameObject> lstAsteroid;
     [HideInInspector] public int Score = 0;
     [HideInInspector] public AudioClip ClipBGM;
     [HideInInspector] public MathRNG objMathRNG = new MathRNG(45289574);
+    [HideInInspector] MenuScript objMenu;
     #endregion
 
     #region Static variables
@@ -24,8 +22,6 @@ public class GameManager : MonoBehaviour
 
     #region Editor Variables 
     [Header("Objects")]
-    public GameObject objStar;
-    public GameObject objAsteroid;
     public GameObject objPlayer;
 
     [Header("Audio")]
@@ -60,14 +56,13 @@ public class GameManager : MonoBehaviour
         StartGame = false;
         PauseGame = false;
         GameOver = false;
-        objAsteroid.GetComponent<Obstacle>().GameManager = this;
-        objAsteroid.GetComponent<Obstacle>().objTarget = objPlayer;
         Score = 0;
         ClipBGM = Resources.Load<AudioClip>("Audio/magical_light_parade");
         objAudioMusic.clip = ClipBGM;
         objAudioMusic.volume = PlayerPrefs.GetFloat("masterVolume", 1);
         objAudioSound.volume = PlayerPrefs.GetFloat("masterSound", 1);
         HUD.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.5f * (1 - PlayerPrefs.GetFloat("masterBrightness", 1)));
+        objMenu = MenuPause.GetComponent<MenuScript>();
     }
     void Update()
     {
@@ -172,13 +167,11 @@ public class GameManager : MonoBehaviour
         {
             objAudioMusic.Play();
         }
-        for (int i = 0; i < 3; i++)
+        var lstObjects = this.gameObject.GetComponentsInChildren<SpawnObject>(true);
+        foreach (var obj in lstObjects)
         {
-            lstStar.Add(Instantiate(objStar, new Vector2(objMathRNG.NextValueFloat(-9, 9), objMathRNG.NextValueFloat(-5, 5)), Quaternion.identity));
-        }
-        for (int i = 0; i < 6; i++)
-        {
-            lstAsteroid.Add(Instantiate(objAsteroid, objMathRNG.getRandomSpawnPoint(minValues, maxValues), Quaternion.identity));
+            obj.objMathRNG = objMathRNG;
+            obj.Spawn();
         }
     }
     public void GameScreen()
@@ -193,7 +186,7 @@ public class GameManager : MonoBehaviour
     }
     public void GameOverScreen()
     {
-        var objMenu = MenuPause.GetComponent<MenuScript>();
+        Time.timeScale = 0;
         if (objMenu != null && !objMenu.gameObject.activeSelf)
         {
             objAudioMusic.Stop();
@@ -210,7 +203,6 @@ public class GameManager : MonoBehaviour
         {
             if (PauseGame)
             {
-                var objMenu = MenuPause.GetComponent<MenuScript>();
                 if(objMenu != null)
                 {
                     objMenu.ClickResumeGame();
@@ -221,7 +213,6 @@ public class GameManager : MonoBehaviour
             else
             {
                 MenuPause.SetActive(true);
-                var objMenu = MenuPause.GetComponent<MenuScript>();
                 if (objMenu != null)
                 {
                     objMenu.ReactivateFocus();
