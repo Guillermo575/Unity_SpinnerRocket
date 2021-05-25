@@ -43,18 +43,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68eb9dd53865213469ffb9c889f86ea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lstStar: []
-  lstCross: []
-  GameOver: 0
   StartGame: 0
-  objStar: {fileID: 1883409075437698889, guid: 636619e93b459b54abf226c1b80797e6, type: 3}
-  objCross: {fileID: 6207838564590335413, guid: c611da2a3614fb94ba22367b099c6536,
-    type: 3}
-  MenuStart: {fileID: 0}
-  MenuGameOver: {fileID: 0}
+  GameOver: 0
+  Score: 0
+  ClipBGM: {fileID: 0}
+  objPlayer: {fileID: 0}
+  objAudioMusic: {fileID: 0}
+  objAudioSound: {fileID: 0}
+  HUD: {fileID: 0}
+  MenuPause: {fileID: 0}
+  txtScore: {fileID: 0}
+  txtHighScore: {fileID: 0}
+  btnSoundON: {fileID: 0}
+  btnSoundOFF: {fileID: 0}
   minValues: {x: -16, y: -9, z: 0}
   maxValues: {x: 16, y: 9, z: 0}
-  Camera: {fileID: 0}
-  target: {fileID: 0}
-  offset: {x: 0, y: 0, z: 0}
-  smoothFactor: 0

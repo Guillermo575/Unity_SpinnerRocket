@@ -41,13 +41,6 @@ public class GameManager : MonoBehaviour
     [Header("Scene Bounds")]
     public Vector3 minValues;
     public Vector3 maxValues;
-
-    [Header("Camera")]
-    public Camera Camera;
-    public Transform target;
-    public Vector3 offset;
-    [Range(0, 10)]
-    public float smoothFactor;
     #endregion
 
     #region Start & Update
@@ -104,15 +97,6 @@ public class GameManager : MonoBehaviour
         {
             txtHighScore.text = "High: " + PlayerPrefs.GetInt("HighScore", 0);
         }
-    }
-    public void FollowCamera()
-    {
-        float height = 2f * Camera.orthographicSize;
-        float width = height * Camera.aspect;
-        Vector3 targetPosition = target.position + offset;
-        Vector3 boundPosition = new Vector3(Mathf.Clamp(targetPosition.x, minValues.x + (width / 2), maxValues.x - (width / 2)), Mathf.Clamp(targetPosition.y, minValues.y + (height / 2), maxValues.y - (height / 2)), -10);
-        Vector3 smoothPosition = Vector3.Lerp(Camera.transform.position, boundPosition, smoothFactor * Time.fixedDeltaTime);
-        Camera.transform.position = (smoothFactor == 0) ? boundPosition : smoothPosition;
     }
     public void ToogleMute()
     {
@@ -182,7 +166,6 @@ public class GameManager : MonoBehaviour
         }
         MenuPause.SetActive(false);
         HUD.SetActive(true);
-        FollowCamera();
     }
     public void GameOverScreen()
     {

@@ -60,7 +60,6 @@ public class GameMenuBehavior : MonoBehaviour
         }
         MenuPause.SetActive(false);
         objGameManager.HUD.SetActive(true);
-        objGameManager.FollowCamera();
     }
     public void GameOverScreen()
     {

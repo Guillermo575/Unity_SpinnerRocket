@@ -7951,3 +7951,20 @@ MonoBehaviour:
   type: 1
   minValues: {x: -16, y: -9, z: 0}
   maxValues: {x: 16, y: 9, z: 0}
+--- !u!114 &8402018771447818704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8402018771447818701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64057fc4b8a3bf146a20202d2b1e8cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objGameManager: {fileID: 0}
+  Camera: {fileID: 964605471}
+  target: {fileID: 1371530874}
+  offset: {x: 0, y: 0, z: 0}
+  smoothFactor: 0
