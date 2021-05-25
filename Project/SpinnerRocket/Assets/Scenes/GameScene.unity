@@ -7383,6 +7383,11 @@ PrefabInstance:
       propertyPath: MenuStart
       value: 
       objectReference: {fileID: 1603803265}
+    - target: {fileID: 8387804305898479293, guid: 25b6520fa59ac894eb335b44c64a5d17,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25b6520fa59ac894eb335b44c64a5d17, type: 3}
 --- !u!1 &1603803263 stripped
@@ -7984,3 +7989,18 @@ MonoBehaviour:
   btnSoundOFF: {fileID: 1774839044}
   txtScore: {fileID: 646626942}
   txtHighScore: {fileID: 106994048}
+--- !u!114 &8402018771447818706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8402018771447818701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 053c3126d2bfacf40b27de9b3108ca42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objMenu: {fileID: 0}
+  objGameManager: {fileID: 0}
+  MenuPause: {fileID: 1603803263}

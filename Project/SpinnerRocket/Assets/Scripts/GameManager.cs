@@ -3,17 +3,14 @@ using UnityEngine;
 using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
-    #region Hidden Variables
+    #region Hidden & Static Variables
     [Header("Hidden")]
     [HideInInspector] public bool StartGame = false;
     [HideInInspector] public bool GameOver = false;
     [HideInInspector] public int Score = 0;
     [HideInInspector] public AudioClip ClipBGM;
     [HideInInspector] public MathRNG objMathRNG = new MathRNG(45289574);
-    [HideInInspector] MenuScript objMenu;
-    #endregion
 
-    #region Static variables
     [Header("Static")]
     [HideInInspector] public static bool PauseGame = false;
     [HideInInspector] public static bool MuteGame;
@@ -27,7 +24,6 @@ public class GameManager : MonoBehaviour
 
     [Header("Menu")]
     public GameObject HUD;
-    public GameObject MenuPause;
 
     [Header("Scene Bounds")]
     public Vector3 minValues;
@@ -46,26 +42,9 @@ public class GameManager : MonoBehaviour
         objAudioMusic.volume = PlayerPrefs.GetFloat("masterVolume", 1);
         objAudioSound.volume = PlayerPrefs.GetFloat("masterSound", 1);
         HUD.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.5f * (1 - PlayerPrefs.GetFloat("masterBrightness", 1)));
-        objMenu = MenuPause.GetComponent<MenuScript>();
     }
     void Update()
     {
-        if (!StartGame)
-        {
-            StartMenuGame();
-        }
-        if (StartGame && GameOver)
-        {
-            GameOverScreen();
-        }
-        if (StartGame && !GameOver)
-        {
-            if(!PauseGame)
-            {
-                GameScreen();
-            }
-            CheckPause();
-        }
         CheckConfig();
     }
     #endregion
@@ -108,90 +87,6 @@ public class GameManager : MonoBehaviour
             }
             PlayerPrefs.SetInt("VolumeChanged", 0);
         }
-    }
-    #endregion
-
-    #region Screens
-    public void StartMenuGame()
-    {
-        MenuPause.SetActive(false);
-        HUD.SetActive(false);
-        StartGame = true;
-        PauseGame = false;
-        GameOver = false;
-        Time.timeScale = 1;
-        if (!MuteGame)
-        {
-            objAudioMusic.Play();
-        }
-        var lstObjects = this.gameObject.GetComponentsInChildren<SpawnObject>(true);
-        foreach (var obj in lstObjects)
-        {
-            obj.objMathRNG = objMathRNG;
-            obj.Spawn();
-        }
-    }
-    public void GameScreen()
-    {
-        if (!PauseGame && !MuteGame)
-        {
-            objAudioMusic.UnPause();
-        }
-        MenuPause.SetActive(false);
-        HUD.SetActive(true);
-    }
-    public void GameOverScreen()
-    {
-        Time.timeScale = 0;
-        if (objMenu != null && !objMenu.gameObject.activeSelf)
-        {
-            objAudioMusic.Stop();
-            HUD.SetActive(false);
-            objMenu.ClickGameOver();
-        }
-    }
-    #endregion
-
-    #region Pause & Resume
-    public void CheckPause()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape) || (PauseGame && !MenuPause.activeSelf))
-        {
-            if (PauseGame)
-            {
-                if(objMenu != null)
-                {
-                    objMenu.ClickResumeGame();
-                }
-                Resumegame();
-                MenuPause.SetActive(false);
-            }
-            else
-            {
-                MenuPause.SetActive(true);
-                if (objMenu != null)
-                {
-                    objMenu.ReactivateFocus();
-                }
-                PauseGame = true;
-                Time.timeScale = 0;
-                objAudioMusic.Pause();
-            }
-        }
-        if (!Input.GetKey("space") || Input.GetKeyUp("space"))
-        {
-            BlockKeyBoard = false;
-        }
-    }
-    public void Resumegame()
-    {
-        PauseGame = false;
-        Time.timeScale = 1;
-        if (!MuteGame)
-        {
-            objAudioMusic.UnPause();
-        }
-        BlockKeyBoard = true;
     }
     #endregion
 }
