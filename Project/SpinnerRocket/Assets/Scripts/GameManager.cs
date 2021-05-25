@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
             txtHighScore.text = "High: " + PlayerPrefs.GetInt("HighScore", 0);
         }
     }
-    void FollowCamera()
+    public void FollowCamera()
     {
         float height = 2f * Camera.orthographicSize;
         float width = height * Camera.aspect;
