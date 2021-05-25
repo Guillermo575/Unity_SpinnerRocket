@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     [HideInInspector] public bool Stucked = false;
     [HideInInspector] public GameManager GameManager;
     [HideInInspector] MathRNG objMathRNG = new MathRNG(517643879);
+    [HideInInspector] public bool PlayerGameOver = false;
     #endregion
 
     #region Editor Variables
@@ -30,7 +31,7 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
-        if (GameManager.StartGame && !GameManager.PauseGame && !GameManager.GameOver)
+        if (GameManager.StartGame && !GameManager.PauseGame && !GameManager.GameOver && !PlayerGameOver)
         {
             animator.SetBool("Death", false);
             var MinX = GameManager.minValues.x;
@@ -75,10 +76,11 @@ public class Player : MonoBehaviour
                 collision.gameObject.transform.position = new Vector3(objMathRNG.NextValueFloat(-9, 9), objMathRNG.NextValueFloat(-5, 5), 0);
                 GameManager.Score += 1;
             }
-            if (collision.gameObject.tag == "Obstaculo")
+            if (collision.gameObject.tag == "Obstaculo" && !PlayerGameOver)
             {
                 animator.SetBool("Death", true);
                 GameManager.GameOver = true;
+                PlayerGameOver = true;
             }
         }
     }
