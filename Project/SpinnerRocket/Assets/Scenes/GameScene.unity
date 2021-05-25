@@ -7985,6 +7985,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objGameManager: {fileID: 0}
+  HUD: {fileID: 1064027239}
   btnSoundON: {fileID: 899853836}
   btnSoundOFF: {fileID: 1774839044}
   txtScore: {fileID: 646626942}

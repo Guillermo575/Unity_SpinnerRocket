@@ -36,7 +36,6 @@ public class GameMenuBehavior : MonoBehaviour
     public void StartMenuGame()
     {
         MenuPause.SetActive(false);
-        objGameManager.HUD.SetActive(false);
         objGameManager.StartGame = true;
         GameManager.PauseGame = false;
         objGameManager.GameOver = false;
@@ -59,7 +58,6 @@ public class GameMenuBehavior : MonoBehaviour
             objGameManager.objAudioMusic.UnPause();
         }
         MenuPause.SetActive(false);
-        objGameManager.HUD.SetActive(true);
     }
     public void GameOverScreen()
     {
@@ -67,7 +65,6 @@ public class GameMenuBehavior : MonoBehaviour
         if (objMenu != null && !objMenu.gameObject.activeSelf)
         {
             objGameManager.objAudioMusic.Stop();
-            objGameManager.HUD.SetActive(false);
             objMenu.ClickGameOver();
         }
     }
