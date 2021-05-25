@@ -961,7 +961,7 @@ MonoBehaviour:
   m_CancelButton: Cancel
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
+  m_ForceModuleActive: 1
   isMouseInputActive: 0
 --- !u!1 &1064027239
 GameObject:
@@ -7560,8 +7560,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8402018772153086386, guid: 02a271656e08b6f42a5e10a223cffa9d,
-          type: 3}
+      - m_Target: {fileID: 974559358}
         m_MethodName: ToogleMute
         m_Mode: 1
         m_Arguments:
@@ -7968,3 +7967,20 @@ MonoBehaviour:
   target: {fileID: 1371530874}
   offset: {x: 0, y: 0, z: 0}
   smoothFactor: 0
+--- !u!114 &8402018771447818705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8402018771447818701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6345de0aa66e1214fad993ce6dcfdf3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objGameManager: {fileID: 0}
+  btnSoundON: {fileID: 899853836}
+  btnSoundOFF: {fileID: 1774839044}
+  txtScore: {fileID: 646626942}
+  txtHighScore: {fileID: 106994048}

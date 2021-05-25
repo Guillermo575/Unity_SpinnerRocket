@@ -32,12 +32,6 @@ public class GameManager : MonoBehaviour
     public GameObject HUD;
     public GameObject MenuPause;
 
-    [Header("HUD")]
-    public TextMeshProUGUI txtScore;
-    public TextMeshProUGUI txtHighScore;
-    public Image btnSoundON;
-    public Image btnSoundOFF;
-
     [Header("Scene Bounds")]
     public Vector3 minValues;
     public Vector3 maxValues;
@@ -75,29 +69,11 @@ public class GameManager : MonoBehaviour
             }
             CheckPause();
         }
-        setScore();
         CheckConfig();
-        btnSoundON.enabled = !MuteGame;
-        btnSoundOFF.enabled = MuteGame;
     }
     #endregion
 
     #region General
-    void setScore()
-    {
-        if(txtScore != null)
-        {
-            txtScore.text = "Score: " + Score;
-        }
-        if (PlayerPrefs.GetInt("HighScore", 0) < Score)
-        {
-            PlayerPrefs.SetInt("HighScore", Score);
-        }
-        if (txtHighScore != null)
-        {
-            txtHighScore.text = "High: " + PlayerPrefs.GetInt("HighScore", 0);
-        }
-    }
     public void ToogleMute()
     {
         if (objAudioMusic.isPlaying)
