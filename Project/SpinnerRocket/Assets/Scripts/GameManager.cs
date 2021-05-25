@@ -21,9 +21,6 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Editor Variables 
-    [Header("Objects")]
-    public GameObject objPlayer;
-
     [Header("Audio")]
     public AudioSource objAudioMusic;
     public AudioSource objAudioSound;
