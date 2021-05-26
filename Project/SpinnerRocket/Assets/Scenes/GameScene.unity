@@ -8005,3 +8005,18 @@ MonoBehaviour:
   objMenu: {fileID: 0}
   objGameManager: {fileID: 0}
   MenuPause: {fileID: 1603803263}
+--- !u!114 &8402018771447818707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8402018771447818701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f262c5d5b6850c498d2591a51d6d286, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ClipBGM: {fileID: 0}
+  objAudioMusic: {fileID: 212470487}
+  objAudioSound: {fileID: 286476478}

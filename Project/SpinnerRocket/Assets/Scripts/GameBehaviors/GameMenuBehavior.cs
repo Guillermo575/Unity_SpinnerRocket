@@ -40,10 +40,6 @@ public class GameMenuBehavior : MonoBehaviour
         GameManager.PauseGame = false;
         objGameManager.GameOver = false;
         Time.timeScale = 1;
-        if (!GameManager.MuteGame)
-        {
-            objGameManager.objAudioMusic.Play();
-        }
         var lstObjects = this.gameObject.GetComponentsInChildren<SpawnObject>(true);
         foreach (var obj in lstObjects)
         {
@@ -53,10 +49,6 @@ public class GameMenuBehavior : MonoBehaviour
     }
     public void GameScreen()
     {
-        if (!GameManager.PauseGame && !GameManager.MuteGame)
-        {
-            objGameManager.objAudioMusic.UnPause();
-        }
         MenuPause.SetActive(false);
     }
     public void GameOverScreen()
@@ -64,7 +56,6 @@ public class GameMenuBehavior : MonoBehaviour
         Time.timeScale = 0;
         if (objMenu != null && !objMenu.gameObject.activeSelf)
         {
-            objGameManager.objAudioMusic.Stop();
             objMenu.ClickGameOver();
         }
     }
@@ -93,7 +84,6 @@ public class GameMenuBehavior : MonoBehaviour
                 }
                 GameManager.PauseGame = true;
                 Time.timeScale = 0;
-                objGameManager.objAudioMusic.Pause();
             }
         }
         if (!Input.GetKey("space") || Input.GetKeyUp("space"))
@@ -105,10 +95,6 @@ public class GameMenuBehavior : MonoBehaviour
     {
         GameManager.PauseGame = false;
         Time.timeScale = 1;
-        if (!GameManager.MuteGame)
-        {
-            objGameManager.objAudioMusic.UnPause();
-        }
         GameManager.BlockKeyBoard = true;
     }
     #endregion

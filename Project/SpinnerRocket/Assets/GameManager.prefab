@@ -46,9 +46,5 @@ MonoBehaviour:
   StartGame: 0
   GameOver: 0
   Score: 0
-  ClipBGM: {fileID: 0}
-  objAudioMusic: {fileID: 0}
-  objAudioSound: {fileID: 0}
-  HUD: {fileID: 0}
   minValues: {x: -16, y: -9, z: 0}
   maxValues: {x: 16, y: 9, z: 0}
