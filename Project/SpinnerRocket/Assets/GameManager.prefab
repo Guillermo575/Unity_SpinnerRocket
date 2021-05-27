@@ -265,6 +265,7 @@ GameObject:
   - component: {fileID: 8402018772153086387}
   - component: {fileID: 8402018772153086386}
   - component: {fileID: 715666137841952193}
+  - component: {fileID: 5475477803885710946}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -321,3 +322,20 @@ MonoBehaviour:
   ClipBGM: {fileID: 0}
   objAudioMusic: {fileID: 2137992201445488548}
   objAudioSound: {fileID: 713642780173533447}
+--- !u!114 &5475477803885710946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8402018772153086385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64057fc4b8a3bf146a20202d2b1e8cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objGameManager: {fileID: 0}
+  Camera: {fileID: 0}
+  target: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0}
+  smoothFactor: 0
