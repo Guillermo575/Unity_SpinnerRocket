@@ -21,13 +21,21 @@ public class GameManager : MonoBehaviour
     #region Start & Update
     void Start()
     {
-        StartGame = false;
+        StartGame = true;
         PauseGame = false;
         GameOver = false;
         Score = 0;
+        Time.timeScale = 1;
+        var lstObjects = this.gameObject.GetComponentsInChildren<SpawnObject>(true);
+        foreach (var obj in lstObjects)
+        {
+            obj.objMathRNG = objMathRNG;
+            obj.Spawn();
+        }
     }
     void Update()
     {
+
     }
     #endregion
 }

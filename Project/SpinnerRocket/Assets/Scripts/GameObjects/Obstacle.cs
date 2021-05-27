@@ -15,7 +15,8 @@ public class Obstacle : MonoBehaviour
         transform = GetComponent<Transform>();
         rigidbody = GetComponent<Rigidbody2D>();
         GameManager = GameObject.Find("GameManager").gameObject.GetComponentsInChildren<GameManager>(true)[0];
-        objTarget = GameObject.Find("MainPlayer").gameObject;
+        var objmain = GameObject.Find("MainPlayer");
+        objTarget = objmain == null ? null : objmain.gameObject;
     }
     void Update()
     {
@@ -30,7 +31,7 @@ public class Obstacle : MonoBehaviour
                 transform.position.y < GameManager.minValues.y - 1 || transform.position.y > GameManager.maxValues.y + 1)
             {
                 transform.position = GameManager.objMathRNG.getRandomSpawnPoint(GameManager.minValues, GameManager.maxValues);
-                RotateTowards(objTarget.transform.position);
+                RotateTowards(objTarget == null ? new Vector3(0f, 0f, 0f) : objTarget.transform.position);
             }
             setSpeed(3);
         }

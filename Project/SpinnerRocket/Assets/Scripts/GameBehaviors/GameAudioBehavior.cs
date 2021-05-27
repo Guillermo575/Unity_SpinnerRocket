@@ -8,8 +8,8 @@ public class GameAudioBehavior : MonoBehaviour
     void Start()
     {
         objGameManager = GameObject.Find("GameManager").gameObject.GetComponentsInChildren<GameManager>(true)[0];
-        ClipBGM = Resources.Load<AudioClip>("Audio/magical_light_parade");
-        objAudioMusic.clip = ClipBGM;
+        //ClipBGM = Resources.Load<AudioClip>("Audio/magical_light_parade");
+        //objAudioMusic.clip = ClipBGM;
         objAudioMusic.volume = PlayerPrefs.GetFloat("masterVolume", 1);
         objAudioSound.volume = PlayerPrefs.GetFloat("masterSound", 1);
     }

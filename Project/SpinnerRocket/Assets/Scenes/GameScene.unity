@@ -282,7 +282,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 1350957e7532ebc478d39e2ad3cce82a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1053,7 +1053,7 @@ GameObject:
   - component: {fileID: 1070027829}
   - component: {fileID: 1070027828}
   m_Layer: 5
-  m_Name: MenuCanvas
+  m_Name: HUDCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8017,6 +8017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f262c5d5b6850c498d2591a51d6d286, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objGameManager: {fileID: 0}
   ClipBGM: {fileID: 0}
   objAudioMusic: {fileID: 212470487}
   objAudioSound: {fileID: 286476478}

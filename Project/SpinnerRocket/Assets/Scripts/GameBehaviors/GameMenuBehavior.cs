@@ -36,16 +36,6 @@ public class GameMenuBehavior : MonoBehaviour
     public void StartMenuGame()
     {
         MenuPause.SetActive(false);
-        objGameManager.StartGame = true;
-        GameManager.PauseGame = false;
-        objGameManager.GameOver = false;
-        Time.timeScale = 1;
-        var lstObjects = this.gameObject.GetComponentsInChildren<SpawnObject>(true);
-        foreach (var obj in lstObjects)
-        {
-            obj.objMathRNG = objGameManager.objMathRNG;
-            obj.Spawn();
-        }
     }
     public void GameScreen()
     {
