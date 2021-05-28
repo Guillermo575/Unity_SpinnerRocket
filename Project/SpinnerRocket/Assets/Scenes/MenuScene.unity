@@ -3584,23 +3584,28 @@ PrefabInstance:
     - target: {fileID: 8402018772153086386, guid: 02a271656e08b6f42a5e10a223cffa9d,
         type: 3}
       propertyPath: minValues.x
-      value: -12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8402018772153086386, guid: 02a271656e08b6f42a5e10a223cffa9d,
         type: 3}
       propertyPath: maxValues.x
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8402018772153086386, guid: 02a271656e08b6f42a5e10a223cffa9d,
         type: 3}
       propertyPath: minValues.y
-      value: -7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8402018772153086386, guid: 02a271656e08b6f42a5e10a223cffa9d,
         type: 3}
       propertyPath: maxValues.y
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8402018772153086386, guid: 02a271656e08b6f42a5e10a223cffa9d,
+        type: 3}
+      propertyPath: TileGrid
+      value: 
+      objectReference: {fileID: 689857681}
     - target: {fileID: 8402018772153086387, guid: 02a271656e08b6f42a5e10a223cffa9d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3682,6 +3687,8 @@ MonoBehaviour:
   type: 1
   minValues: {x: -12, y: -7, z: 0}
   maxValues: {x: 12, y: 7, z: 0}
+  TileGrid: {fileID: 689857681}
+  OffSetUnits: 0
 --- !u!1 &1900344974
 GameObject:
   m_ObjectHideFlags: 0
