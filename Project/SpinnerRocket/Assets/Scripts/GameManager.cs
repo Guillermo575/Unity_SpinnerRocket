@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.Tilemaps;
-
 public class GameManager : MonoBehaviour
 {
     #region Variables

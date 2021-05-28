@@ -266,6 +266,8 @@ GameObject:
   - component: {fileID: 8402018772153086386}
   - component: {fileID: 715666137841952193}
   - component: {fileID: 5475477803885710946}
+  - component: {fileID: 3367317353229338856}
+  - component: {fileID: 6203335089948195535}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -306,6 +308,7 @@ MonoBehaviour:
   Score: 0
   minValues: {x: -16, y: -9, z: 0}
   maxValues: {x: 16, y: 9, z: 0}
+  TileGrid: {fileID: 0}
 --- !u!114 &715666137841952193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,3 +342,38 @@ MonoBehaviour:
   target: {fileID: 0}
   offset: {x: 0, y: 0, z: 0}
   smoothFactor: 0
+--- !u!114 &3367317353229338856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8402018772153086385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!114 &6203335089948195535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8402018772153086385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea8ccea59ebea464ba85a102f377e48e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 1
+  isMouseInputActive: 0
