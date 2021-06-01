@@ -1,6 +1,8 @@
-﻿using UnityEngine.EventSystems;
+﻿using UnityEngine;
+using UnityEngine.EventSystems;
 public class OnlyKeyBoardInputModule : StandaloneInputModule
 {
+    public GameObject objFocus;
     public bool isMouseInputActive = false;
     public bool GetMouseState
     {
@@ -22,5 +24,12 @@ public class OnlyKeyBoardInputModule : StandaloneInputModule
         }
         if (isMouseInputActive)
             ProcessMouseEvent();
+    }
+    public void Update()
+    {
+        var focusActual = eventSystem.currentSelectedGameObject;
+        objFocus = focusActual == null ? objFocus : focusActual;
+        focusActual = objFocus;
+        eventSystem.SetSelectedGameObject(focusActual);
     }
 }
