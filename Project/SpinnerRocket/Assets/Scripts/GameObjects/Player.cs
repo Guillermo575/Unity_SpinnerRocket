@@ -2,22 +2,24 @@
 public class Player : MonoBehaviour
 {
     #region Private and Hidden Variables
-    private Rigidbody2D rigidbody2D;
-    private Animator animator;
-    private Transform transform;
-    private Rigidbody2D rigidbody;
-    private Renderer renderer;
+    [HideInInspector] public Rigidbody2D rigidbody2D;
+    [HideInInspector] public Animator animator;
+    [HideInInspector] public Transform transform;
+    [HideInInspector] public Rigidbody2D rigidbody;
+    [HideInInspector] public Renderer renderer;
     [HideInInspector] public bool InMovement = false;
-    [HideInInspector] public float FraccAngle = 360/8;
     [HideInInspector] public bool Stucked = false;
     [HideInInspector] public GameManager GameManager;
     [HideInInspector] MathRNG objMathRNG = new MathRNG(517643879);
     [HideInInspector] public bool PlayerGameOver = false;
+    [HideInInspector] public double SpeedObject = 0;
     #endregion
 
     #region Editor Variables
     public int RotationXMin = 180;
     public int SpeedMovement = 15;
+    public double DecreaseSpeed = 0.2;
+    public double IncreaseSpeed = 0.8;
     #endregion
 
     #region General
@@ -28,6 +30,7 @@ public class Player : MonoBehaviour
         transform = GetComponent<Transform>();
         rigidbody = GetComponent<Rigidbody2D>();
         renderer = GetComponent<Renderer>();
+        SpeedObject = 0;
     }
     void Update()
     {
@@ -47,10 +50,13 @@ public class Player : MonoBehaviour
             if (!Input.GetKey("space") || GameManager.BlockKeyBoard)
             {
                 Stucked = false;
-                transform.Rotate(0, 0, -(RotationXMin * Time.deltaTime));
-                setSpeed(0);
+                if(SpeedObject <= 0)
+                {
+                    transform.Rotate(0, 0, -(RotationXMin * Time.deltaTime));
+                    animator.SetBool("Run", false);
+                }
+                SetAcelerate(-DecreaseSpeed);
                 InMovement = false;
-                animator.SetBool("Run", false);
             }
             else
             {
@@ -59,12 +65,8 @@ public class Player : MonoBehaviour
                 {
                     InMovement = true;
                 }
-                setSpeed(SpeedMovement);
+                SetAcelerate(IncreaseSpeed);
             }
-        }
-        else
-        {
-            setSpeed(0);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -86,7 +88,7 @@ public class Player : MonoBehaviour
     }
     #endregion
 
-    #region Direction
+    #region Set Speed
     public void setSpeed(float Speed)
     {
         Vector2 newVelocity;
@@ -103,17 +105,49 @@ public class Player : MonoBehaviour
         rigidbody.velocity = newVelocity;
     }
     #endregion
+
+    #region Aceelerate
+    public void SetAcelerate(double Speed)
+    {
+        Vector2 newVelocity;
+        var angle = rigidbody.rotation;
+        newVelocity.x = Mathf.Cos(angle * Mathf.Deg2Rad) * (float)SpeedObject;
+        newVelocity.y = Mathf.Sin(angle * Mathf.Deg2Rad) * (float)SpeedObject;
+        newVelocity.x = Mathf.Round(newVelocity.x);
+        newVelocity.y = Mathf.Round(newVelocity.y);
+        if (Stucked)
+        {
+            newVelocity.x = 0;
+            newVelocity.y = 0;
+            SpeedObject = 0;
+        }
+        rigidbody.velocity = newVelocity;
+        SpeedObject += Speed;
+        SpeedObject = SpeedObject >= SpeedMovement ? SpeedMovement : SpeedObject;
+        SpeedObject = SpeedObject <= 0 ? 0 : SpeedObject;
+    }
+    #endregion
 }
 #region OLD CODES
-//Vector2 newVelocity;
-//var angle = transform.rotation.z;
-//newVelocity.x = Mathf.Cos(angle) * Speed;
-//newVelocity.x = rigidbody.rotation > 90.0f || rigidbody.rotation < -90.0f ? -newVelocity.x : newVelocity.x;
-//newVelocity.y = Mathf.Sin(angle) * Speed;
-//rigidbody.velocity = (newVelocity);
-
+//[HideInInspector] public float FraccAngle = 360/8;
 //var angles = (transform.rotation.z * Mathf.Rad2Deg) * Mathf.PI;
 //angles = Mathf.Round(angles / FraccAngle) * FraccAngle;
 //rigidbody.rotation = angles;
-//Debug.Log(angles);
+//if (!Input.GetKey("space") || GameManager.BlockKeyBoard)
+//{
+//    Stucked = false;
+//    transform.Rotate(0, 0, -(RotationXMin * Time.deltaTime));
+//    setSpeed(0);
+//    InMovement = false;
+//    animator.SetBool("Run", false);
+//}
+//else
+//{
+//    animator.SetBool("Run", true);
+//    if (!InMovement)
+//    {
+//        InMovement = true;
+//    }
+//    setSpeed(SpeedMovement);
+//}
 #endregion
