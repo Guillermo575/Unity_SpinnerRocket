@@ -50,10 +50,10 @@ public class Player : MonoBehaviour
             if (!Input.GetKey("space") || GameManager.BlockKeyBoard)
             {
                 Stucked = false;
+                animator.SetBool("Run", false);
                 if(SpeedObject <= 0)
                 {
                     transform.Rotate(0, 0, -(RotationXMin * Time.deltaTime));
-                    animator.SetBool("Run", false);
                 }
                 SetAcelerate(-DecreaseSpeed);
                 InMovement = false;
@@ -85,6 +85,9 @@ public class Player : MonoBehaviour
                 PlayerGameOver = true;
             }
         }
+    }
+    void OnTriggerStay2D(Collider2D other)
+    {
     }
     #endregion
 

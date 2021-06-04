@@ -1,3 +1,5 @@
+-Menu	
+	Cambiar el icono de mouse cuando se acerque un botón
 -GAMEPLAY
 	-Sistema de niveles
 		-Acabar nivel, proseguir a otro
