@@ -1,0 +1,15 @@
+-GAMEPLAY
+	-Sistema de niveles
+		-Acabar nivel, proseguir a otro
+			-Crear WinBehavior
+			-Agregar en GameManager NextLevel value
+				-Al cumplir con la condicional de victoria abrir menu que indique si quieres seguir al siguiente nivel
+		-Al morir en modo historia activar temporizador para reiniciar nivel
+	-Nuevos elementos
+		-Agujeros negros
+		-Obstaculos fijos
+		-Enemigos persecutorios
+MODO SURVIVAL
+	-dificultad gradual, Al aumentar la puntuacion:
+		* Aumentar asteroides disponibles
+		* Aumentar velocidad
