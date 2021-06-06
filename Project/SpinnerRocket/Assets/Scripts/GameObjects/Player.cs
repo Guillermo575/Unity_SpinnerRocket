@@ -1,21 +1,24 @@
 ﻿using UnityEngine;
 public class Player : MonoBehaviour
 {
-    #region Private and Hidden Variables
-    [HideInInspector] public Rigidbody2D rigidbody2D;
+    #region Unity Variables
+    [HideInInspector] public new Rigidbody2D rigidbody2D;
     [HideInInspector] public Animator animator;
-    [HideInInspector] public Transform transform;
-    [HideInInspector] public Rigidbody2D rigidbody;
-    [HideInInspector] public Renderer renderer;
+    [HideInInspector] public new Transform transform;
+    [HideInInspector] public new Rigidbody2D rigidbody;
+    [HideInInspector] public new Renderer renderer;
+    #endregion
+
+    #region InGame Variables
     [HideInInspector] public bool InMovement = false;
     [HideInInspector] public bool Stucked = false;
-    [HideInInspector] public GameManager GameManager;
     [HideInInspector] MathRNG objMathRNG = new MathRNG(517643879);
     [HideInInspector] public bool PlayerGameOver = false;
     [HideInInspector] public double SpeedObject = 0;
     #endregion
 
     #region Editor Variables
+    public GameManager GameManager;
     public int RotationXMin = 180;
     public int SpeedMovement = 15;
     public double DecreaseSpeed = 0.2;
@@ -85,9 +88,6 @@ public class Player : MonoBehaviour
                 PlayerGameOver = true;
             }
         }
-    }
-    void OnTriggerStay2D(Collider2D other)
-    {
     }
     #endregion
 

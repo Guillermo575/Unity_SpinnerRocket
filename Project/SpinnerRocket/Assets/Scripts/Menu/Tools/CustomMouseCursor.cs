@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 public class CustomMouseCursor : MonoBehaviour
 {
     [HideInInspector] Vector2 hotSpot = new Vector2(0, 0);

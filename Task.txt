@@ -1,3 +1,8 @@
+-HUD 
+	Ajustar el HUD de acuerdo a la resolucion
+-Animaciones
+	-Crear particulas de chispas al propulsar cohete
+	-Animacion de explosion al morir
 -GAMEPLAY
 	-Sistema de niveles
 		-Acabar nivel, proseguir a otro
@@ -7,6 +12,8 @@
 		-Al morir en modo historia activar temporizador para reiniciar nivel
 	-Nuevos elementos
 		-Agujeros negros
+			-Colocar variables de traccion y radio
+			-Colocar un centro invisible que mate al jugador
 		-Obstaculos fijos
 		-Enemigos persecutorios
 MODO SURVIVAL
