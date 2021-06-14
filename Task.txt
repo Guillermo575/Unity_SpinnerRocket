@@ -1,3 +1,5 @@
+-SEGURIDAD
+	-Cambiar password a nuevo esquema GITHUB
 -HUD 
 	Ajustar el HUD de acuerdo a la resolucion
 -Animaciones
