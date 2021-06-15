@@ -38,11 +38,11 @@ public class Player : MonoBehaviour
         renderer = GetComponent<Renderer>();
         SpeedObject = 0;
         var lstParticle = this.gameObject.GetComponentsInChildren<ParticleSystem>();
-        var lstLaunch = (from x in lstParticle where x.gameObject.name == "PSLaunch" select x).ToList();
+        var lstLaunch = (from x in lstParticle where x.gameObject.name == ParticleLaunch.gameObject.name select x).ToList();
         ParticleLaunch = lstLaunch.Count > 0 ? lstLaunch[0] : ParticleLaunch;
-        var lstBurst = (from x in lstParticle where x.gameObject.name == "PSBurst" select x).ToList();
+        var lstBurst = (from x in lstParticle where x.gameObject.name == ParticleBurst.gameObject.name select x).ToList();
         ParticleBurst = lstBurst.Count > 0 ? lstBurst[0] : ParticleBurst;
-        var lstBling = (from x in lstParticle where x.gameObject.name == "PSBling" select x).ToList();
+        var lstBling = (from x in lstParticle where x.gameObject.name == ParticleBling.gameObject.name select x).ToList();
         ParticleBling = lstBling.Count > 0 ? lstBling[0] : ParticleBling;
     }
     void Update()
