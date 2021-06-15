@@ -2,8 +2,8 @@
 public class Obstacle : MonoBehaviour
 {
     #region Variable
-    [HideInInspector] private Transform transform;
-    [HideInInspector] private Rigidbody2D rigidbody;
+    [HideInInspector] private new Transform transform;
+    [HideInInspector] private new Rigidbody2D rigidbody;
     [HideInInspector] public GameManager GameManager;
     [HideInInspector] public GameObject objTarget;
     [HideInInspector] public bool targetLock = false;
@@ -20,7 +20,7 @@ public class Obstacle : MonoBehaviour
     }
     void Update()
     {
-        if (GameManager.StartGame && !GameManager.GameOver)
+        if (GameManager.StartGame)
         {
             if(!targetLock)
             {

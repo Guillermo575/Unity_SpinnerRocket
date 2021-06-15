@@ -1,10 +1,10 @@
 -SEGURIDAD
 	-Cambiar password a nuevo esquema GITHUB
--HUD 
-	Ajustar el HUD de acuerdo a la resolucion
 -Animaciones
-	-Crear particulas de chispas al propulsar cohete
-	-Animacion de explosion al morir
+	-Revisar forma en que se obtienen los particle system desde la clase player
+	-Mejorar animacion de explosion
+-EJE Z
+	-Revisar como ordenar los objetos de acuerdo al eje z
 -GAMEPLAY
 	-Sistema de niveles
 		-Acabar nivel, proseguir a otro

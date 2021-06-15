@@ -43,7 +43,7 @@ public class GameMenuBehavior : MonoBehaviour
     }
     public void GameOverScreen()
     {
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
         if (objMenu != null && !objMenu.gameObject.activeSelf)
         {
             objMenu.ClickGameOver();

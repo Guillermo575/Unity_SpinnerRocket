@@ -14,13 +14,14 @@ public class Player : MonoBehaviour
     [HideInInspector] public bool InMovement = false;
     [HideInInspector] public bool Stucked = false;
     [HideInInspector] MathRNG objMathRNG = new MathRNG(517643879);
-    [HideInInspector] public bool PlayerGameOver = false;
     [HideInInspector] public double SpeedObject = 0;
     #endregion
 
     #region Editor Variables
     public GameManager GameManager;
     public ParticleSystem ParticleLaunch;
+    public ParticleSystem ParticleBurst;
+    public ParticleSystem ParticleBling;
     public int RotationXMin = 180;
     public int SpeedMovement = 15;
     public double DecreaseSpeed = 0.2;
@@ -39,10 +40,14 @@ public class Player : MonoBehaviour
         var lstParticle = this.gameObject.GetComponentsInChildren<ParticleSystem>();
         var lstLaunch = (from x in lstParticle where x.gameObject.name == "PSLaunch" select x).ToList();
         ParticleLaunch = lstLaunch.Count > 0 ? lstLaunch[0] : ParticleLaunch;
+        var lstBurst = (from x in lstParticle where x.gameObject.name == "PSBurst" select x).ToList();
+        ParticleBurst = lstBurst.Count > 0 ? lstBurst[0] : ParticleBurst;
+        var lstBling = (from x in lstParticle where x.gameObject.name == "PSBling" select x).ToList();
+        ParticleBling = lstBling.Count > 0 ? lstBling[0] : ParticleBling;
     }
     void Update()
     {
-        if (GameManager.StartGame && !GameManager.PauseGame && !GameManager.GameOver && !PlayerGameOver)
+        if (GameManager.StartGame && !GameManager.PauseGame)
         {
             animator.SetBool("Death", false);
             var MinX = GameManager.minValues.x;
@@ -55,7 +60,7 @@ public class Player : MonoBehaviour
             var transformY = Mathf.Clamp(transform.position.y, MinY + RenderHeight, MaxY - RenderHeight);
             Stucked = Stucked == false ? !(transformX == transform.position.x && transformY == transform.position.y) : Stucked;
             transform.position = new Vector3(transformX, transformY, transform.position.z);
-            if (!Input.GetKey("space") || GameManager.BlockKeyBoard)
+            if (!Input.GetKey("space") || GameManager.BlockKeyBoard || GameManager.GameOver)
             {
                 Stucked = false;
                 animator.SetBool("Run", false);
@@ -91,14 +96,16 @@ public class Player : MonoBehaviour
         {
             if (collision.gameObject.tag == "Star")
             {
+                ParticleBling.Play();
                 collision.gameObject.transform.position = new Vector3(objMathRNG.NextValueFloat(-9, 9), objMathRNG.NextValueFloat(-5, 5), 0);
                 GameManager.Score += 1;
             }
-            if (collision.gameObject.tag == "Obstaculo" && !PlayerGameOver)
+            if (collision.gameObject.tag == "Obstaculo" && !GameManager.GameOver)
             {
                 animator.SetBool("Death", true);
                 GameManager.GameOver = true;
-                PlayerGameOver = true;
+                ParticleBurst.Play();
+                renderer.enabled = false;
             }
         }
     }
