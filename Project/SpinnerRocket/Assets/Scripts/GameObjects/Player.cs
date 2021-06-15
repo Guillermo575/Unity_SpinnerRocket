@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Linq;
 public class Player : MonoBehaviour
 {
     #region Unity Variables
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
 
     #region Editor Variables
     public GameManager GameManager;
+    public ParticleSystem ParticleLaunch;
     public int RotationXMin = 180;
     public int SpeedMovement = 15;
     public double DecreaseSpeed = 0.2;
@@ -34,6 +36,9 @@ public class Player : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         renderer = GetComponent<Renderer>();
         SpeedObject = 0;
+        var lstParticle = this.gameObject.GetComponentsInChildren<ParticleSystem>();
+        var lstLaunch = (from x in lstParticle where x.gameObject.name == "PSLaunch" select x).ToList();
+        ParticleLaunch = lstLaunch.Count > 0 ? lstLaunch[0] : ParticleLaunch;
     }
     void Update()
     {
@@ -60,9 +65,17 @@ public class Player : MonoBehaviour
                 }
                 SetAcelerate(-DecreaseSpeed);
                 InMovement = false;
+                if (ParticleLaunch.isPlaying)
+                {
+                    ParticleLaunch.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+                }
             }
             else
             {
+                if(!ParticleLaunch.isPlaying)
+                {
+                    ParticleLaunch.Play(true);
+                }
                 animator.SetBool("Run", true);
                 if (!InMovement)
                 {
