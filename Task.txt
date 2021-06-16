@@ -1,8 +1,5 @@
--SEGURIDAD
-	-Cambiar password a nuevo esquema GITHUB
 -Animaciones
-	-Revisar forma en que se obtienen los particle system desde la clase player
-	-Mejorar animacion de explosion
+	-Ajustes personaje post-mortem
 -EJE Z
 	-Revisar como ordenar los objetos de acuerdo al eje z
 -GAMEPLAY
@@ -22,3 +19,5 @@ MODO SURVIVAL
 	-dificultad gradual, Al aumentar la puntuacion:
 		* Aumentar asteroides disponibles
 		* Aumentar velocidad
+-SEGURIDAD
+	-Cambiar password a nuevo esquema GITHUB
