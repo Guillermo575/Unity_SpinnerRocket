@@ -1,23 +1,21 @@
--Animaciones
-	-Ajustes personaje post-mortem
--EJE Z
-	-Revisar como ordenar los objetos de acuerdo al eje z
 -GAMEPLAY
-	-Sistema de niveles
-		-Acabar nivel, proseguir a otro
-			-Crear WinBehavior
-			-Agregar en GameManager NextLevel value
-				-Al cumplir con la condicional de victoria abrir menu que indique si quieres seguir al siguiente nivel
-		-Al morir en modo historia activar temporizador para reiniciar nivel
 	-Nuevos elementos
 		-Agujeros negros
 			-Colocar variables de traccion y radio
 			-Colocar un centro invisible que mate al jugador
 		-Obstaculos fijos
 		-Enemigos persecutorios
+	-Sistema de niveles
+		-Acabar nivel, proseguir a otro
+			-Crear WinBehavior
+			-Agregar en GameManager NextLevel value
+				-Al cumplir con la condicional de victoria abrir menu que indique si quieres seguir al siguiente nivel
+		-Al morir en modo historia activar temporizador para reiniciar nivel
 MODO SURVIVAL
 	-dificultad gradual, Al aumentar la puntuacion:
 		* Aumentar asteroides disponibles
 		* Aumentar velocidad
 -SEGURIDAD
 	-Cambiar password a nuevo esquema GITHUB
+-EJE Z
+	-Revisar como ordenar los objetos de acuerdo al eje z

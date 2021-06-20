@@ -88,6 +88,10 @@ public class Player : MonoBehaviour
                 }
                 SetAcelerate(IncreaseSpeed);
             }
+            if(GameManager.GameOver)
+            {
+                setSpeed(0);
+            }
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -106,6 +110,7 @@ public class Player : MonoBehaviour
                 GameManager.GameOver = true;
                 ParticleBurst.Play();
                 renderer.enabled = false;
+                setSpeed(0);
             }
         }
     }

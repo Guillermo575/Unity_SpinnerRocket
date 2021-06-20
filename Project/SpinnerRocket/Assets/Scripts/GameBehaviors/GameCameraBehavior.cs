@@ -22,7 +22,7 @@ public class GameCameraBehavior : MonoBehaviour
         float height = 2f * Camera.orthographicSize;
         float width = height * Camera.aspect;
         Vector3 targetPosition = (target == null ? new Vector3(0,0) : target.position) + offset;
-        Vector3 boundPosition = new Vector3(Mathf.Clamp(targetPosition.x, objGameManager.minValues.x + (width / 2), objGameManager.maxValues.x - (width / 2)), Mathf.Clamp(targetPosition.y, objGameManager.minValues.y + (height / 2), objGameManager.maxValues.y - (height / 2)), -10);
+        Vector3 boundPosition = new Vector3(Mathf.Clamp(targetPosition.x, objGameManager.minValues.x + (width / 2), objGameManager.maxValues.x - (width / 2)), Mathf.Clamp(targetPosition.y, objGameManager.minValues.y + (height / 2), objGameManager.maxValues.y - (height / 2)), Camera.transform.position.z);
         Vector3 smoothPosition = Vector3.Lerp(Camera.transform.position, boundPosition, smoothFactor * Time.fixedDeltaTime);
         Camera.transform.position = (smoothFactor == 0) ? boundPosition : smoothPosition;
     }
