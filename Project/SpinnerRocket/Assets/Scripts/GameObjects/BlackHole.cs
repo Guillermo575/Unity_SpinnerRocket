@@ -5,9 +5,10 @@ using UnityEngine;
 public class BlackHole : MonoBehaviour
 {
     [HideInInspector] public new Transform transform;
-    public GameManager GameManager;
+    [HideInInspector] public GameManager GameManager;
     void Start()
     {
+        GameManager = GameObject.Find("GameManager").gameObject.GetComponentsInChildren<GameManager>(true)[0];
         transform = GetComponent<Transform>();
     }
     void Update()

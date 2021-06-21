@@ -2,7 +2,6 @@
 	-Nuevos elementos
 		-Agujeros negros
 			-Colocar variables de traccion y radio
-			-Colocar un centro invisible que mate al jugador
 		-Obstaculos fijos
 		-Enemigos persecutorios
 	-Sistema de niveles
