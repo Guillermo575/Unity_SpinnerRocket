@@ -41,6 +41,17 @@ public class Obstacle : MonoBehaviour
             setSpeed(0);
         }
     }
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        if (GameManager.StartGame)
+        {
+            if (collision.gameObject.tag == "Player")
+            {
+                RotateTowards(objTarget == null ? new Vector3(0f, 0f, 0f) : objTarget.transform.position);
+                setSpeed(GameManager.GameOver ? 0 : SpeedMovement);
+            }
+        }
+    }
     #endregion
 
     #region setDirection
