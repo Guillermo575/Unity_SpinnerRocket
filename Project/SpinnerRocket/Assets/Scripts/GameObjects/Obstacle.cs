@@ -7,6 +7,7 @@ public class Obstacle : MonoBehaviour
     [HideInInspector] public GameManager GameManager;
     [HideInInspector] public GameObject objTarget;
     [HideInInspector] public bool targetLock = false;
+    public float SpeedMovement = 3;
     #endregion
 
     #region General
@@ -33,7 +34,7 @@ public class Obstacle : MonoBehaviour
                 transform.position = GameManager.objMathRNG.getRandomSpawnPoint(GameManager.minValues, GameManager.maxValues);
                 RotateTowards(objTarget == null ? new Vector3(0f, 0f, 0f) : objTarget.transform.position);
             }
-            setSpeed(3);
+            setSpeed(SpeedMovement);
         }
         else
         {
