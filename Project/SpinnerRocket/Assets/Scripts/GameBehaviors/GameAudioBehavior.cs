@@ -15,7 +15,17 @@ public class GameAudioBehavior : MonoBehaviour
     }
     void Update()
     {
-        if (!GameManager.MuteGame)
+        if (PlayerPrefs.GetInt("VolumeChanged", 0) == 1)
+        {
+            objAudioMusic.volume = PlayerPrefs.GetFloat("masterVolume", 1);
+            objAudioSound.volume = PlayerPrefs.GetFloat("masterSound", 1);
+            if (!objAudioMusic.isPlaying && !GameManager.PauseGame)
+            {
+                objAudioMusic.Play();
+            }
+            PlayerPrefs.SetInt("VolumeChanged", 0);
+        }
+        if (!GameManager.MuteGame && objAudioMusic.volume > 0)
         {
             if (objGameManager.StartGame && !objAudioMusic.isPlaying)
             {
@@ -40,16 +50,6 @@ public class GameAudioBehavior : MonoBehaviour
         if (GameManager.PauseGame)
         {
             objAudioMusic.Pause();
-        }
-        if (PlayerPrefs.GetInt("VolumeChanged", 0) == 1)
-        {
-            objAudioMusic.volume = PlayerPrefs.GetFloat("masterVolume", 1);
-            objAudioSound.volume = PlayerPrefs.GetFloat("masterSound", 1);
-            if (!objAudioMusic.isPlaying && !GameManager.PauseGame)
-            {
-                objAudioMusic.Play();
-            }
-            PlayerPrefs.SetInt("VolumeChanged", 0);
         }
     }
     public void ToogleMute()
