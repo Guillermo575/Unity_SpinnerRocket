@@ -25,7 +25,7 @@ public class GameAudioBehavior : MonoBehaviour
             }
             PlayerPrefs.SetInt("VolumeChanged", 0);
         }
-        if (!GameManager.MuteGame && objAudioMusic.volume > 0)
+        if (!GameManager.MuteGame && objAudioMusic.volume > 0.0001)
         {
             if (objGameManager.StartGame && !objAudioMusic.isPlaying)
             {
