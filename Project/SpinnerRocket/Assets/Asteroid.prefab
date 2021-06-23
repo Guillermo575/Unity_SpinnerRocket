@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6207838564590335419}
   - component: {fileID: 6207838564590335412}
-  - component: {fileID: 6207838564590335418}
   - component: {fileID: -4825031522850865917}
   - component: {fileID: 1070634034523626623}
+  - component: {fileID: 5337604772838204029}
   m_Layer: 0
-  m_Name: Cross
+  m_Name: Asteroid
   m_TagString: Obstaculo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,6 +49,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -84,39 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &6207838564590335418
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6207838564590335413}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.48606777, y: -0.21780801}
-      - {x: 0.44285178, y: 0.123667955}
-      - {x: 0.33034337, y: 0.4328251}
-      - {x: -0.210114, y: 0.48257303}
-      - {x: -0.4932077, y: 0.04261422}
-      - {x: -0.3233397, y: -0.31807494}
-      - {x: 0.0024434328, y: -0.47718167}
-      - {x: 0.26159275, y: -0.47972846}
 --- !u!50 &-4825031522850865917
 Rigidbody2D:
   serializedVersion: 4
@@ -151,3 +119,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameManager: {fileID: 0}
+  objTarget: {fileID: 0}
+  targetLock: 0
+  SpeedMovement: 3
+--- !u!58 &5337604772838204029
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6207838564590335413}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5

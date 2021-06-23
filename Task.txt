@@ -4,6 +4,7 @@
 			-Colocar variables de traccion y radio
 		-Obstaculos fijos
 		-Enemigos persecutorios
+			-Usar algoritmo de proximidad
 	-Sistema de niveles
 		-Acabar nivel, proseguir a otro
 			-Crear WinBehavior
@@ -18,3 +19,7 @@ MODO SURVIVAL
 	-Cambiar password a nuevo esquema GITHUB
 -EJE Z
 	-Revisar como ordenar los objetos de acuerdo al eje z
+		-BlackHoles
+		-Particulas
+		-Jugador
+		-Asteroides
