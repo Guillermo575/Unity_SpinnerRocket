@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 569710042721751512}
   - component: {fileID: 1718239421277564153}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: DeathCollider
   m_TagString: Obstaculo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
