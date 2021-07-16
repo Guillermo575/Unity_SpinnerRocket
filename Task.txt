@@ -5,6 +5,7 @@
 		-Obstaculos fijos
 		-Enemigos persecutorios
 			-Usar algoritmo de proximidad
+			-Capacidad de moverse sin rotar
 	-Sistema de niveles
 		-Acabar nivel, proseguir a otro
 			-Crear WinBehavior

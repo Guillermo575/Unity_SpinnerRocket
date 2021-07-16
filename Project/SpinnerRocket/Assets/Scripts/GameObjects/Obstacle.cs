@@ -8,6 +8,7 @@ public class Obstacle : MonoBehaviour
     [HideInInspector] public GameObject objTarget;
     [HideInInspector] public bool targetLock = false;
     public float SpeedMovement = 3;
+    public bool IsStalker = false;
     #endregion
 
     #region General
@@ -34,7 +35,10 @@ public class Obstacle : MonoBehaviour
                 transform.position = GameManager.objMathRNG.getRandomSpawnPoint(GameManager.minValues, GameManager.maxValues);
                 RotateTowards(objTarget == null ? new Vector3(0f, 0f, 0f) : objTarget.transform.position);
             }
-            setSpeed(SpeedMovement);
+            if(!IsStalker)
+            {
+                setSpeed(SpeedMovement);
+            }
         }
         else
         {
@@ -45,7 +49,7 @@ public class Obstacle : MonoBehaviour
     {
         if (GameManager.StartGame)
         {
-            if (collision.gameObject.tag == "Player")
+            if (collision.gameObject.tag == "Player" && IsStalker)
             {
                 RotateTowards(objTarget == null ? new Vector3(0f, 0f, 0f) : objTarget.transform.position);
                 setSpeed(GameManager.GameOver ? 0 : SpeedMovement);
