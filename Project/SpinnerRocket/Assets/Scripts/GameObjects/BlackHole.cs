@@ -6,6 +6,7 @@ public class BlackHole : MonoBehaviour
 {
     [HideInInspector] public new Transform transform;
     [HideInInspector] public GameManager GameManager;
+    public float SpeedTraction = 1;
     void Start()
     {
         GameManager = GameObject.Find("GameManager").gameObject.GetComponentsInChildren<GameManager>(true)[0];
@@ -21,7 +22,7 @@ public class BlackHole : MonoBehaviour
         {
             if (collision.gameObject.tag == "Player")
             {
-                collision.gameObject.transform.position = Vector2.MoveTowards(collision.gameObject.transform.position, transform.position, 1 * Time.deltaTime);
+                collision.gameObject.transform.position = Vector2.MoveTowards(collision.gameObject.transform.position, transform.position, SpeedTraction * Time.deltaTime);
             }
         }
     }
